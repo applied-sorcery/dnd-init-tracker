@@ -8,7 +8,9 @@
 
 // import uuid from 'react-native-uuid';
 // import ListItem from './components/ListItem.js';
-// import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+//import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+//import Icon from 'react-native-vector-icons/MaterialIcons';
+//import Icon from '@expo/vector-icons/MaterialIcons';
 
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
