@@ -23,15 +23,12 @@ const initialState = {allMonsters: [], combatants: []};
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_1:
-      console.log('ADD_1', state.allMonsters[0]);
       let newMonsters = state.allMonsters.map((monster) =>
         monster.id == action.payload
           ? {...monster, quantity: (monster.quantity += 1)}
           : monster,
       );
-
       let newCombatants = newMonsters.filter((monster) => monster.quantity > 0);
-
       return {
         ...state,
         allMonsters: newMonsters,
@@ -39,7 +36,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOAD_MONSTERS:
-      console.log('LOAD_MONSTERS');
       return {
         ...state,
         allMonsters: action.payload.map((monster) => ({

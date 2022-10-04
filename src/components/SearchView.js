@@ -10,7 +10,9 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
+
 import ListItem from './ListItem.js';
+import InfoView from './InfoView.js';
 //import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 //import Icon from '@expo/vector-icons/MaterialIcons';
@@ -30,7 +32,6 @@ const SearchView = ({navigation}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(' * you are in useEffect()');
     getDataFromApiAsync('http://dnd5eapi.co/api/monsters').then((result) => {
       dispatch(loadMonsters(result));
     });
@@ -40,7 +41,6 @@ const SearchView = ({navigation}) => {
     try {
       let response = await fetch(url);
       let json = await response.json();
-      // console.log('-->', json.results);
       return json.results;
     } catch (error) {
       console.error(error);

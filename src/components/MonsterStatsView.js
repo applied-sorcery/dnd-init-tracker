@@ -24,7 +24,7 @@ const MonsterStatsView = ({route, navigation}) => {
   const [currentMonster, setCurrentMonster] = useState({});
 
   useEffect(() => {
-    console.log('~ in useEffect in Info. route.url is: ' + route.params.url);
+    
 
     getDataFromApiAsync(route.params.url).then((result) => {
       let info = (({

@@ -4,12 +4,12 @@ import {
 } from 'react-native';
 
 import Styles from '../../Style.js';
-const InfoView = ()=>{
+const InfoView = ({item})=>{
   return(
     <View>
-        <Text>Name</Text>
-        <Text>Initiative Score</Text>
-        <Text>Level</Text>
+        <Text>{item.name}</Text>
+        <Text>{item.init}</Text>
+        <Text>{item.level}</Text>
     </View>
   );
 };
