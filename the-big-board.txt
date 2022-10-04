@@ -53,10 +53,9 @@
 
 ##Current Tasks:
    [ ] draw out each screen and make a flow chart of possible navigation/flow 
-   
    [ ] get a minimal prototype running + test
    [ ] write tests if that's your thing
-   [ ]
+   [ ] remove all comments from project
 
 ##Completed Tasks:
    [x] remove "console.log(...)" statements in project

@@ -10,12 +10,6 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-// import uuid from 'react-native-uuid';
-// import Header from './components/Header.js';
-// import ListItem from './components/ListItem.js';
-//import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-//import Icon from 'react-native-vector-icons/MaterialIcons';
-//import Icon from '@expo/vector-icons/MaterialIcons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {kStringMaxLength} from 'buffer';
@@ -64,9 +58,6 @@ const MonsterStatsView = ({route, navigation}) => {
 
   return (
     <View>
-      {/*currentMonster.map((el) => (
-        <Text>{el.name}</Text>
-      ))*/}
       <Text>Stats:</Text>
       <View style={styles.attributesView}>
         <Text>Strength: {currentMonster.strength}</Text>
