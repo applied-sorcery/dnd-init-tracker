@@ -51,15 +51,15 @@ const styles = StyleSheet.create({
   listItem: {
     padding: 5,
     backgroundColor: '#2f363c',
-    borderWidth: 4,
-    borderColor: 'blue',
+    // borderWidth: 4,
+    // borderColor: 'blue',
   },
   listItemView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 4,
-    borderColor: 'green',
+    // borderWidth: 4,
+    // borderColor: 'green',
   },
   infoIcon: {
     margin: 3,

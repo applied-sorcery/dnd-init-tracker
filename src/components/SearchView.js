@@ -95,6 +95,7 @@ const SearchView = ({navigation}) => {
       <View>
         <Text style={Styles.defaultText}>My Mobs:</Text>
       </View>
+      {/* this list is for the mobs you've already added from searches */}
       <FlatList
         data={combatants}
         renderItem={renderItem}
@@ -131,6 +132,8 @@ const SearchView = ({navigation}) => {
       </View>
 
       <View style={Styles.listArea}>
+
+        {/* the list below is for the search results*/}
         <FlatList
           data={getListData()}
           renderItem={renderItem}
