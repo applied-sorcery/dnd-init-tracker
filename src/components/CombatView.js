@@ -1,3 +1,11 @@
+/**
+ * -every person in the list of combatants should have an init score, check if they do. if they don't: can't start the combat
+ * -the list of combatants should be sorted by init score
+ * -"whoseTurn" state var gets set to 0, the first index of the sorted  combatants array. it will always correspond to an array index
+ * -setWhoseTurn gets called to update whose turn it is whenever the next button gets pressed (whoseTurn + 1)
+ * 
+ */
+
 import React, {useState, useEffect} from 'react';
 import {
   View,
@@ -16,16 +24,41 @@ import Styles from '../../Style';
 
 const baseUrl = 'http://dnd5eapi.co';
 
-const CombatView = ({navigation, renderItem, combatants}) => {
+const CombatView = ({navigation, combatants}) => {
   //mock data:
-  const [testData, settestData] = useState([
+
+  const [whoseTurn, setWhoseTurn] = useState(0);
+  const [preBattle, setPreBattle] = useState(true);
+  const [testData, settestData] = useState(
     [
-      {id: '1', name: 'tim'},
-      {id: '2', name: 'katie'},
-      {id: '3', name: 'todd'},
-      {id: '4', name: 'sarah'},
-    ],
-  ]);
+      {id: '1', name: 'tim', initScore: 2},
+      {id: '2', name: 'katie', initScore: 20},
+      {id: '3', name: 'todd', initScore: 19},
+      {id: '4', name: 'sarah', initScore: 13},
+    ]
+  );
+
+  const renderItem = ({item}) => (
+    <ListItem
+      item={item}
+      myTurn={testData.indexOf(item) == whoseTurn &&  !preBattle? true : false}
+    />
+  );
+
+  const onStartPress = () => {
+    setPreBattle(false);
+ };
+
+
+  const onNextPress = () => {
+     testData.length-1 == whoseTurn ? 
+      setWhoseTurn(0):
+      setWhoseTurn(whoseTurn+1);
+
+      console.log(whoseTurn);
+  };
+
+
   return (
     <View style={Styles.container}>
       <Text style={Styles.defaultText}>This is the combat view</Text>
@@ -36,6 +69,9 @@ const CombatView = ({navigation, renderItem, combatants}) => {
         ListEmptyComponent={() => <Text>{'<no mobs yet>'}</Text>}
         keyboardShouldPersistTaps="always"
       />
+      <TouchableOpacity onPress={preBattle ? onStartPress :onNextPress}>
+      <Text style={Styles.defaultText}>{preBattle ? 'START' :'NEXT'}</Text>
+        </TouchableOpacity>
     </View>
   );
 };
