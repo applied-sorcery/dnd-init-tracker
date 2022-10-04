@@ -1,0 +1,43 @@
+requirements for this app:
+
+in general, track a dnd combat.
+
+screens: 
+
+ [ ] home screen:
+     -- new combat button (shows a modal to get the combat name, saves it and directs you to the combat screen)
+     -- save combat button (takes you to the combat screen)
+     -- combatants button (takes you to the combatants screen)
+ [ ] combat screen: 
+     -- name the combat if there isn't one, if don't want to name it there should be a default
+     -- keep track of whose turn it is
+     -- keep track of what round it is
+     -- keep track of the initiative order
+     -- button to add a new combatant
+     -- list all currently added combatants
+     -- button to save this combat
+     -- next button to advance on turn
+     --maybe a time tracker to keep track of how much time elapsed
+     -- states: pre-battle, during battle
+     -- when adding, it can be a player or a monster, or a group
+     
+ [ ] Info screen:
+     -- user should be able to click on a monster/combatant and pull up a stat block. 
+     maybe this is too extra though, only need data enough to track initiative.
+ 
+ 
+
+ 
+ [ ] combatants screen:
+     -- button view prev saved groups
+     -- button to create a group
+     -- view list of all saved individual combatants
+     -- states: pre-battle, during battle
+     -- button to add a combatant for use later
+     -- manage/edit/delete combatants/groups
+     
+ 
+ [ ] create a group:
+
+Extra:
+     -- roll random numbers for initiative to speed things up

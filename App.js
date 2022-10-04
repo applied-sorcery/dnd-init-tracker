@@ -20,6 +20,7 @@ import SettingsView from './src/components/SettingsView.js';
 import InstructionsView from './src/components/InstructionsView.js';
 import MonsterStatsView from './src/components/MonsterStatsView.js';
 import CombatView from './src/components/CombatView.js';
+import InfoView from './src/components/InfoView.js'
 import {
   bottomTabNavigator,
   NavigationContainer,
@@ -49,6 +50,7 @@ const App = () => {
           <Tab.Screen name="Instructions" component={InstructionsView} />
           <Tab.Screen name="Combat" component={CombatView} />
           <Tab.Screen name="Search" component={SearchView} />
+          <Tab.Screen name="Info" component={InfoView} />
         </Tab.Navigator>
       </NavigationContainer>
     </StateProvider>
