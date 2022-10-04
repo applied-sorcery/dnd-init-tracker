@@ -50,7 +50,7 @@ const App = () => {
           <Tab.Screen name="Instructions" component={InstructionsView} />
           <Tab.Screen name="Combat" component={CombatView} />
           <Tab.Screen name="Search" component={SearchView} />
-          <Tab.Screen name="Info" component={InfoView} />
+          {/* <Tab.Screen name="Info" component={InfoView} /> */}
         </Tab.Navigator>
       </NavigationContainer>
     </StateProvider>
