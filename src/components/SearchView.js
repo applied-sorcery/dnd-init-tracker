@@ -104,7 +104,7 @@ const SearchView = ({navigation}) => {
       />
     </View>
   );
-
+     
   return (
     <View style={Styles.container}>
       <SafeAreaView style={Styles.safeArea} />

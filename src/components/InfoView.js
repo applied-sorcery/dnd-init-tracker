@@ -3,13 +3,13 @@ import {
   Text,
 } from 'react-native';
 
+import MonsterStatsView from './MonsterStatsView.js';
+
 import Styles from '../../Style.js';
-const InfoView = ({item})=>{
+const InfoView = ({route, navigation})=>{
   return(
     <View>
-        <Text>{item.name}</Text>
-        <Text>{item.init}</Text>
-        <Text>{item.level}</Text>
+        <MonsterStatsView route={route}/>
     </View>
   );
 };

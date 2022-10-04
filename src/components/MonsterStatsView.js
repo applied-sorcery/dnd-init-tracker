@@ -56,7 +56,6 @@ const MonsterStatsView = ({route, navigation}) => {
     try {
       let response = await fetch(url);
       let json = await response.json();
-      // console.log('-->', json.results);
       return json;
     } catch (error) {
       console.error(error);
