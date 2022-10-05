@@ -22,7 +22,6 @@
     - list all currently added combatants
     - button to save this combat
     - next button to advance on turn (if it's the last combatant's turn, pressing "next" advances the round and it's the first combatant's turn)
-    - maybe a time tracker to keep track of how much time elapsed
     - states: pre-battle, during battle
     - when adding, it can be a player or a monster, or a group
      
@@ -65,6 +64,8 @@
    [x] implement navigation to info screen using stack navigation existing MonsterStatsView component and it works!
 ##Extra features: 
     - roll random numbers for initiative to speed things up
+    - a time tracker to keep track of how much time elapsed
+
 
 ##Bug Tracking:
    [ ] warning: "search" component within "search" component, how to properly nest stack nav inside tab nav?

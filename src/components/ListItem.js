@@ -16,10 +16,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-const ListItem = ({item, addItem, removeItem, onInfoPress}) => {
+const ListItem = ({item, addItem, removeItem, onInfoPress, myTurn}) => {
   return (
     <TouchableOpacity style={styles.listItem}>
-      <View style={styles.listItemView}>
+      <View style={myTurn? styles.listItemViewMyTurn :styles.listItemView}>
         <Text style={styles.listItemText}>{item.name} </Text>
         <View style={styles.right}>
           <TouchableOpacity style={styles.infoIcon}>
@@ -51,13 +51,15 @@ const styles = StyleSheet.create({
   listItem: {
     padding: 5,
     backgroundColor: '#2f363c',
-    borderWidth: 4,
-    borderColor: 'blue',
+    // borderWidth: 4,
+    // borderColor: 'blue',
   },
   listItemView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  listItemViewMyTurn:{
     borderWidth: 4,
     borderColor: 'green',
   },
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-  listItemText: {fontSize: 22, color: '#c85c5c'},
+  listItemText: {fontSize: 22, color: '#AAA'},
   qtyView: {flexDirection: 'row', alignItems: 'center'},
 });
 

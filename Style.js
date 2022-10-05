@@ -4,7 +4,10 @@ import Colors from './Colors';
 const Styles = StyleSheet.create({
   button: {
     color: '#3f1818',
+    borderColor:  '#3f1818', 
+    backgroundColor: '#2f241c'
   },
+
 
   container: {
     backgroundColor: '#2f363c',
