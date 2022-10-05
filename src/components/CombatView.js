@@ -29,6 +29,7 @@ const CombatView = ({navigation, combatants}) => {
 
   const [whoseTurn, setWhoseTurn] = useState(0);
   const [preBattle, setPreBattle] = useState(true);
+  const [savedCombats, setSavedCombats] = useState([]);
   const [testData, settestData] = useState(
     [
       {id: '1', name: 'tim', initScore: 2},
@@ -37,6 +38,10 @@ const CombatView = ({navigation, combatants}) => {
       {id: '4', name: 'sarah', initScore: 13},
     ]
   );
+
+  const isNewCombat = ()=>
+    (savedCombats == 0);
+  
 
   const renderItem = ({item}) => (
     <ListItem
@@ -60,8 +65,12 @@ const CombatView = ({navigation, combatants}) => {
 
 
   return (
+    testData ?
     <View style={Styles.container}>
       <Text style={Styles.defaultText}>This is the combat view</Text>
+      
+      {/* {isNewCombat() ? <NewCombatView />: <LoadCombatView />} */}
+      
       <FlatList
         data={testData}
         renderItem={renderItem}
@@ -72,7 +81,7 @@ const CombatView = ({navigation, combatants}) => {
       <TouchableOpacity onPress={preBattle ? onStartPress :onNextPress}>
       <Text style={Styles.defaultText}>{preBattle ? 'START' :'NEXT'}</Text>
         </TouchableOpacity>
-    </View>
+    </View> : null
   );
 };
 
