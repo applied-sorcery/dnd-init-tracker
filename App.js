@@ -46,9 +46,9 @@ const App = () => {
   const SearchStack = () =>(
    <Stack.Navigator>
       <Stack.Screen
-      name="Search"
+      name="SearchView"
       component={SearchView}
-      options={{}}
+      options={{headerShown:false}}
         />
       <Stack.Screen name="Info" component={InfoView} />
     </Stack.Navigator>)
