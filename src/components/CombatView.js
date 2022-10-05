@@ -26,7 +26,7 @@ const baseUrl = 'http://dnd5eapi.co';
 
 const CombatView = ({navigation, combatants}) => {
   //mock data:
-
+  const [round, setRound] = useState(0)
   const [whoseTurn, setWhoseTurn] = useState(0);
   const [preBattle, setPreBattle] = useState(true);
   const [savedCombats, setSavedCombats] = useState([]);
@@ -52,25 +52,27 @@ const CombatView = ({navigation, combatants}) => {
 
   const onStartPress = () => {
     setPreBattle(false);
+    setRound(1);
  };
 
 
   const onNextPress = () => {
-     testData.length-1 == whoseTurn ? 
-      setWhoseTurn(0):
-      setWhoseTurn(whoseTurn+1);
-
-      console.log(whoseTurn);
+     if(testData.length-1 == whoseTurn){
+       setRound((round)=> round+1);
+       setWhoseTurn(0);
+     } else {
+      setWhoseTurn(whoseTurn+1);}
   };
 
 
   return (
     testData ?
     <View style={Styles.container}>
-      <Text style={Styles.defaultText}>This is the combat view</Text>
+      
+      <Text style={Styles.defaultText}>{preBattle ? "--": "Round: " + round}</Text>
       
       {/* {isNewCombat() ? <NewCombatView />: <LoadCombatView />} */}
-      
+      <View style={Styles.listArea}>
       <FlatList
         data={testData}
         renderItem={renderItem}
@@ -78,6 +80,7 @@ const CombatView = ({navigation, combatants}) => {
         ListEmptyComponent={() => <Text>{'<no mobs yet>'}</Text>}
         keyboardShouldPersistTaps="always"
       />
+      </View>
       <TouchableOpacity onPress={preBattle ? onStartPress :onNextPress}>
       <Text style={Styles.defaultText}>{preBattle ? 'START' :'NEXT'}</Text>
         </TouchableOpacity>
