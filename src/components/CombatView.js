@@ -27,6 +27,8 @@ const baseUrl = "http://dnd5eapi.co";
 const CombatView = ({ navigation, ...props }) => {
   //mock data:
   const [round, setRound] = useState(0);
+  const [addingName, setAddingName] = useState(false);
+  const [addingInit, setAddingInit] = useState(false);
   const [whoseTurn, setWhoseTurn] = useState(0);
   const [preBattle, setPreBattle] = useState(true);
   const [savedCombats, setSavedCombats] = useState([]);
@@ -71,7 +73,17 @@ const CombatView = ({ navigation, ...props }) => {
 
   const onLoadCombatantPress = () => {};
 
-  const onPlusIconPress = () => {};
+  const onPlusIconPress = () => {
+    if (addingInit) {
+      setAddingInit(false);
+    }
+    if (addingName) {
+      setAddingName(false);
+      setAddingInit(true);
+    } else {
+      setAddingName(true);
+    }
+  };
 
   const onResetPress = () => {
     setRound(0);
@@ -94,9 +106,16 @@ const CombatView = ({ navigation, ...props }) => {
   const NewCombatView = () => (
     <>
       <Text style={Styles.defaultText}>New Combat:</Text>
-      <TouchableOpacity onPress={onPlusIconPress}>
-        <Text style={Styles.extraLargeText}>+</Text>
-      </TouchableOpacity>
+      <View style={{ borderColor: "red", borderWidth: 2 }}>
+        <TouchableOpacity
+          style={
+            addingName ? Styles.addingName : addingInit ? Styles.addingInit : {}
+          }
+          onPress={onPlusIconPress}
+        >
+          <Text style={Styles.extraLargeText}>+</Text>
+        </TouchableOpacity>
+      </View>
       {/* <TouchableOpacity onPress={onNewCombatantPress}>
         <Text style={Styles.button}>NEW COMBATANTS</Text>
       </TouchableOpacity> */}

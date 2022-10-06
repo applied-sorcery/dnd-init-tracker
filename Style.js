@@ -74,6 +74,9 @@ const Styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
   },
+  plusIcon: {},
+  addingName: { marginRight: 0, height: "50%", marginTop: 0 },
+  addingInit: { marginRight: 0, height: "10%", marginBotton: 0 },
 });
 
 export default Styles;
