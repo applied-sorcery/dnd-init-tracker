@@ -27,13 +27,11 @@ const baseUrl = "http://dnd5eapi.co";
 const CombatView = ({ navigation, ...props }) => {
   //mock data:
 
-  const [addingCombatant, setAddingCombatant] = useState(false);
-  const [duringBattle, setDuringBattle] = useState(false);
   const [round, setRound] = useState(0);
-  const [addingName, setAddingName] = useState(false);
-  const [addingInit, setAddingInit] = useState(false);
   const [whoseTurn, setWhoseTurn] = useState(0);
+  const [duringBattle, setDuringBattle] = useState(false);
   const [preBattle, setPreBattle] = useState(true);
+  const [addingCombatant, setAddingCombatant] = useState(false);
   const [savedCombats, setSavedCombats] = useState([]);
   const [combatants, setCombatants] = useState(props.combatants);
   const [testData, settestData] = useState([
@@ -100,22 +98,19 @@ const CombatView = ({ navigation, ...props }) => {
     <>
       <Text style={Styles.defaultText}>New Combat:</Text>
       <View>
-        <TouchableOpacity
-          style={
-            addingName ? Styles.addingName : addingInit ? Styles.addingInit : {}
-          }
-          onPress={onPlusIconPress}
-        >
+        <TouchableOpacity onPress={onPlusIconPress}>
           <Text style={Styles.extraLargeText}>+</Text>
         </TouchableOpacity>
       </View>
-      {/* <TouchableOpacity onPress={onNewCombatantPress}>
-        <Text style={Styles.button}>NEW COMBATANTS</Text>
-      </TouchableOpacity> */}
       <Text style={Styles.defaultText}>Recent:</Text>
     </>
   );
 
+  //once the battle has started, display these things:
+  //  --round number
+  //  --combatant list
+  //  --Next button
+  //  --Reset button
   const DuringBattleView = () => (
     <>
       <Text style={Styles.defaultText}>{"Round: " + round}</Text>
@@ -129,6 +124,12 @@ const CombatView = ({ navigation, ...props }) => {
     </>
   );
 
+  // when we first load this screen we should assume it's a new combat
+  //if there are no saved combats
+
+  //if there are saved combats, then we will display a Combat Menu with options: Load or New Combat
+
+  //once there are SOME combatants in the list, the start button appears.
   const PreBattleView = () => (
     <>
       {!combatants ? (
@@ -144,13 +145,17 @@ const CombatView = ({ navigation, ...props }) => {
     </>
   );
 
+  //this is the list of combatants.
+  // --can be populated manually adding or by loading
   const CombatantList = () => (
     <View style={Styles.listArea}>
       <FlatList
         data={testData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        ListEmptyComponent={() => <Text>{"<no mobs yet>"}</Text>}
+        ListEmptyComponent={() => (
+          <Text style={Styles.defaultText}>{"<no mobs yet>"}</Text>
+        )}
         keyboardShouldPersistTaps="always"
       />
     </View>
