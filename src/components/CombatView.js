@@ -17,8 +17,11 @@ const CombatView = () => {
   const [round, setRound] = useState(0);
   const [whoseTurn, setWhoseTurn] = useState();
   const [duringBattle, setDuringBattle] = useState(false);
-  const [preBattle, setPreBattle] = useState(true);
+  const [preBattle, setPreBattle] = useState(false);
   const [addingFighter, setAddingFighter] = useState(false);
+  const [showCombatMenu, setShowCombatMenu] = useState(true);
+  const [showNewCombatView, setShowNewCombatView] = useState(false);
+
   const [savedCombats, setSavedCombats] = useState([
     // {
     //   name: "combat1",
@@ -48,16 +51,21 @@ const CombatView = () => {
   //also the start button won't be available
 
   // [
-  //   { id: "1", name: "tim", initScore: 2 },
-  //   { id: "2", name: "katie", initScore: 20 },
-  //   { id: "3", name: "todd", initScore: 19 },
-  //   { id: "4", name: "sarah", initScore: 13 },
-  // ]
+  //   { id: "1", name: "Gorthax", initScore: 2 },
+  //   { id: "2", name: "the BBEG", initScore: 20 },
+  //   { id: "3", name: "Rothalos", initScore: 19 },
+  //   { id: "4", name: "Corrupted One", initScore: 13 },
+  // ];
   const [savingCombat, setSavingCombat] = useState(false);
   const [loadingCombat, setLoadingCombat] = useState(false);
   const [namingCombat, setNamingCombat] = useState(false);
 
-  const [testData, setTestData] = useState();
+  const [testData, setTestData] = useState([
+    { id: "1", name: "Gorthax", initScore: 2 },
+    { id: "2", name: "the BBEG", initScore: 20 },
+    { id: "3", name: "Rothalos", initScore: 19 },
+    { id: "4", name: "Corrupted One", initScore: 13 },
+  ]);
 
   //helper functions
   const isNewCombat = () => {
@@ -83,18 +91,29 @@ const CombatView = () => {
   );
 
   //button press handlers
-  const onNewCombatPress = () => {};
+  const onNewCombatPress = () => {
+    setShowNewCombatView(true);
+    setShowCombatMenu(false);
+  };
 
   const onNewFighterPress = () => {};
 
-  const onLoadCombatPress = () => {};
+  const onLoadCombatPress = () => {
+    setShowCombatMenu(false);
+    setShowNewCombatView(false);
+    setPreBattle(true);
+    setFighters(testData);
+  };
 
   const onLoadFighterPress = () => {};
 
   const onSaveCombatPress = () => {};
 
   const onAddFighterPress = () => {};
-
+  const onGoBackPress = () => {
+    setShowCombatMenu(true);
+    setShowNewCombatView(false);
+  };
   const onStartPress = () => {
     setWhoseTurn(0);
     setPreBattle(false);
@@ -120,15 +139,25 @@ const CombatView = () => {
 
   //function components
   const CombatMenu = () => (
-    <>
-      <TouchableOpacity onPress={onLoadCombatPress}>
-        <Text style={Styles.button}>LOAD COMBAT</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onNewCombatPress}>
-        <Text style={Styles.button}>NEW COMBAT</Text>
-      </TouchableOpacity>
-      <Text style={Styles.defaultText}>Recent:</Text>
-    </>
+    <View style={Styles.combatMenu}>
+      <View style={Styles.someButtonsColumn}>
+        <View
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+        >
+          <TouchableOpacity onPress={onNewCombatPress}>
+            <Text style={Styles.defaultText}>NEW COMBAT</Text>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+        >
+          <TouchableOpacity onPress={onLoadCombatPress}>
+            <Text style={Styles.defaultText}>LOAD COMBAT</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <Text style={Styles.defaultText}>Recent Combats:</Text>
+    </View>
   );
 
   //this is the list of added/ready fighters. it can be populated manually or
@@ -150,14 +179,40 @@ const CombatView = () => {
   //this displays when the user presses the new combat button or when
   //there are no saved combats to load
   const NewCombatView = () => (
-    <View
-      style={[
-        Styles.container,
-        { borderWidth: 2, borderColor: "yellow", margin: 10 },
-      ]}
-    >
-      <Text style={Styles.defaultText}>New Combat:</Text>
-      <Text style={Styles.defaultText}>Recent:</Text>
+    <View style={Styles.combatMenu}>
+      <View style={Styles.someButtonsColumn}>
+        <Text style={Styles.defaultText}>New Combat:</Text>
+        {/* save, load, add buttons goes here */}
+        <View
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+        >
+          <TouchableOpacity onPress={onAddFighterPress}>
+            <Text style={Styles.defaultText}>Add Fighter</Text>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+        >
+          <TouchableOpacity onPress={onSaveCombatPress}>
+            <Text style={Styles.defaultText}>Save Combat</Text>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+        >
+          <TouchableOpacity onPress={onLoadCombatPress}>
+            <Text style={Styles.defaultText}>Load Combat</Text>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+        >
+          <TouchableOpacity onPress={onGoBackPress}>
+            <Text style={Styles.defaultText}>Go Back</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <Text style={Styles.defaultText}>Recent Fighters:</Text>
     </View>
   );
 
@@ -189,9 +244,7 @@ const CombatView = () => {
   //once there are SOME fighters in the list, the start button appears.
   const PreBattleView = () => (
     <>
-      {!fighters ? (
-        <>{isNewCombat() ? <NewCombatView /> : <CombatMenu />}</>
-      ) : (
+      {
         <View
           style={[
             Styles.container,
@@ -206,47 +259,70 @@ const CombatView = () => {
             </TouchableOpacity>
           </View>
         </View>
-      )}
+      }
     </>
   );
 
   return (
     //this is view returned by the combatView component.
     //different sub view components are rendered based on state.
+
     <View style={Styles.container}>
-      <View style={Styles.someOptionsRow}>
-        {/* save, load, add buttons goes here */}
-        <View style={Styles.controlButton}>
-          <TouchableOpacity onPress={onAddFighterPress}>
-            <Text style={Styles.defaultText}>Add Fighter</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={Styles.controlButton}>
-          <TouchableOpacity onPress={onSaveCombatPress}>
-            <Text style={Styles.defaultText}>Save Combat</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={Styles.controlButton}>
-          <TouchableOpacity onPress={onLoadCombatPress}>
-            <Text style={Styles.defaultText}>Load Combat</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          minHeight: "75%",
-          borderWidth: 5,
-          borderColor: "cornflowerblue",
-        }}
-      >
-        {preBattle && <PreBattleView />}
-        {duringBattle && <DuringBattleView />}
-      </View>
-      {/*{addingFighter && <AddingFighterView />}
+      {showCombatMenu ? (
+        <CombatMenu />
+      ) : showNewCombatView ? (
+        <NewCombatView />
+      ) : (
+        <>
+          <View style={Styles.someOptionsRow}>
+            {/* save, load, add buttons goes here */}
+            <View style={[Styles.controlButton, { minWidth: "10%" }]}>
+              <TouchableOpacity onPress={onAddFighterPress}>
+                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                  Add Fighter
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={Styles.controlButton}>
+              <TouchableOpacity onPress={onSaveCombatPress}>
+                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                  Save Combat
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={Styles.controlButton}>
+              <TouchableOpacity onPress={onLoadCombatPress}>
+                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                  Load Combat
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={Styles.controlButton}>
+              <TouchableOpacity onPress={onGoBackPress}>
+                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                  Go Back
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              minHeight: "75%",
+              // borderWidth: 5,
+              // borderColor: "cornflowerblue",
+            }}
+          >
+            {/* {showNewCombatView && <NewCombatView />} */}
+            {preBattle && <PreBattleView />}
+            {duringBattle && <DuringBattleView />}
+          </View>
+          {/*{addingFighter && <AddingFighterView />}
       {savingCombat && <SavingCombatView />}
       {loadingCombat && <LoadingCombatView />}
       {namingCombat && <NamingCombatView />} */}
+        </>
+      )}
     </View>
   );
 };

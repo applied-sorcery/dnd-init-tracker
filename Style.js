@@ -56,23 +56,17 @@ const Styles = StyleSheet.create({
     margin: "5%",
   },
 
-  buttonView: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  plusIcon: {},
-  addingName: { marginRight: 0, height: "50%", marginTop: 0 },
-  addingInit: { marginRight: 0, height: "10%", marginBotton: 0 },
-
   someOptionsRow: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignContent: "center",
+    height: "12%",
+    maxWidt: "10%",
     margin: 0,
     padding: 0,
     borderColor: "purple",
-    borderWidth: 2,
+    // borderWidth: 2,
   },
 
   buttonMenu: {
@@ -87,9 +81,28 @@ const Styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    margin: 10,
+    margin: 5,
+    padding: 5,
     borderWidth: 2,
     borderColor: "darkgray",
+    borderRadius: 5,
+  },
+  combatMenu: {
+    flex: 1,
+    flexDirection: "column",
+    maxHeight: "70%",
+    minHeight: "70%",
+    // borderWidth: 2,
+    borderColor: "red",
+  },
+  someButtonsColumn: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    maxHeight: "100%",
+
+    // borderWidth: 2,
+    borderColor: "limegreen",
   },
 });
 
