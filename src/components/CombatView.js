@@ -166,7 +166,9 @@ const CombatView = ({ navigation, ...props }) => {
   return (
     <View style={Styles.container}>
       {preBattle && <PreBattleView />}
-      {!preBattle && <DuringBattleView />}
+      {duringBattle && <DuringBattleView />}
+      {addingCombatant && <AddingCombatantView />}
+      {addingCombatant && <AddingCombatantView />}
 
       {/*  
 
