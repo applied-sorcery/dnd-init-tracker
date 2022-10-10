@@ -248,7 +248,7 @@ const CombatView = () => {
         <View
           style={[
             Styles.container,
-            { flex: 1, borderWidth: 2, borderColor: "red" },
+            { flex: 1, borderWidth: 0, borderColor: "red" },
           ]}
         >
           <Text style={Styles.defaultText}> [get ready] </Text>

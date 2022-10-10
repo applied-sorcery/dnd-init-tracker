@@ -22,7 +22,7 @@ const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
     <TouchableOpacity>
       <View style={myTurn ? styles.listItemViewMyTurn : styles.listItemView}>
         <Text style={styles.listItemText}>{item.name} </Text>
-        <Text style={styles.listItemText}>{"init: " + item.init}</Text>
+        <Text style={styles.listItemText}>{"init: " + item.initScore}</Text>
         <View style={styles.right}>
           <TouchableOpacity
             style={styles.Button}
