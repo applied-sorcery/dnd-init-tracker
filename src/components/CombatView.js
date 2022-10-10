@@ -24,48 +24,57 @@ import { Animated } from "react-native";
 
 const baseUrl = "http://dnd5eapi.co";
 
-const CombatView = ({ navigation, ...props }) => {
-  //mock data:
-
+const CombatView = () => {
   const [round, setRound] = useState(0);
   const [whoseTurn, setWhoseTurn] = useState(0);
   const [duringBattle, setDuringBattle] = useState(false);
   const [preBattle, setPreBattle] = useState(true);
   const [addingCombatant, setAddingCombatant] = useState(false);
-  const [savedCombats, setSavedCombats] = useState([]);
-  const [combatants, setCombatants] = useState(props.combatants);
-  const [testData, settestData] = useState([
-    { id: "1", name: "tim", initScore: 2 },
-    { id: "2", name: "katie", initScore: 20 },
-    { id: "3", name: "todd", initScore: 19 },
-    { id: "4", name: "sarah", initScore: 13 },
-  ]);
+  const [savedCombats, setSavedCombats] = useState(
+    //some dummy data: when this array is uncommented, there is 1 saved combat named "cobmat1" which has 2 combatants...
+    //if this array is commented out, there are no saved combats and the screen loads directly to new combat view
+    [
+      {
+        name: "combat1",
+        combatants: [{ name: "combatant-1" }, { name: "combatant-2" }],
+      },
+    ]
+  );
+  const [combatants, setCombatants] = useState(
+    //some dummy data: when this array is uncommented, there are 4 currently added/ready combatants, they should be displayed
+    //if this array is commented out, there are no loaded combatants and the plus sign to add combatants is front and center
+    //also the start button won't be available
 
-  const isNewCombat = () => savedCombats == 0;
+    [
+      { id: "1", name: "tim", initScore: 2 },
+      { id: "2", name: "katie", initScore: 20 },
+      { id: "3", name: "todd", initScore: 19 },
+      { id: "4", name: "sarah", initScore: 13 },
+    ]
+  );
+  const [savingCombat, setSavingCombat] = useState(false);
+  const [loadingCombat, setLoadingCombat] = useState(false);
+  const [namingCombat, setNamingCombat] = useState(false);
+
+  const [testData, settestData] = useState();
+
+  const isNewCombat = () => {
+    console.log("isNewCombat()");
+    return savedCombats.length == 0;
+  };
   const isCombatReady = () =>
     combatants && combatants.every((combatant) => combatant.initScore);
 
   const renderItem = ({ item }) => (
     <ListItem
       item={item}
-      myTurn={testData.indexOf(item) == whoseTurn && !preBattle ? true : false}
+      myTurn={
+        combatants.indexOf(item) == whoseTurn && !preBattle ? true : false
+      }
     />
   );
 
-  const onStartPress = () => {
-    setPreBattle(false);
-    setRound(1);
-  };
-
-  const onNextPress = () => {
-    if (testData.length - 1 == whoseTurn) {
-      setRound((round) => round + 1);
-      setWhoseTurn(0);
-    } else {
-      setWhoseTurn(whoseTurn + 1);
-    }
-  };
-
+  //button press handlers
   const onNewCombatPress = () => {};
 
   const onNewCombatantPress = () => {};
@@ -76,12 +85,29 @@ const CombatView = ({ navigation, ...props }) => {
 
   const onPlusIconPress = () => {};
 
+  const onStartPress = () => {
+    setPreBattle(false);
+    setDuringBattle(true);
+    setRound(1);
+  };
+
+  const onNextPress = () => {
+    if (combatants.length - 1 == whoseTurn) {
+      setRound((round) => round + 1);
+      setWhoseTurn(0);
+    } else {
+      setWhoseTurn(whoseTurn + 1);
+    }
+  };
+
   const onResetPress = () => {
     setRound(0);
     setWhoseTurn(0);
     setPreBattle(true);
+    setDuringBattle(false);
   };
 
+  //function components
   const CombatMenu = () => (
     <>
       <TouchableOpacity onPress={onLoadCombatPress}>
@@ -92,6 +118,20 @@ const CombatView = ({ navigation, ...props }) => {
       </TouchableOpacity>
       <Text style={Styles.defaultText}>Recent:</Text>
     </>
+  );
+
+  const CombatantList = () => (
+    <View style={Styles.listArea}>
+      <FlatList
+        data={combatants}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={() => (
+          <Text style={Styles.defaultText}>{"<no mobs yet>"}</Text>
+        )}
+        keyboardShouldPersistTaps="always"
+      />
+    </View>
   );
 
   const NewCombatView = () => (
@@ -135,8 +175,9 @@ const CombatView = ({ navigation, ...props }) => {
       {!combatants ? (
         <>{isNewCombat() ? <NewCombatView /> : <CombatMenu />}</>
       ) : (
-        <View>
+        <View style={Styles.container}>
           <Text style={Styles.defaultText}>--</Text>
+          <CombatantList />
           <TouchableOpacity onPress={onStartPress}>
             <Text style={Styles.button}>START</Text>
           </TouchableOpacity>
@@ -147,25 +188,15 @@ const CombatView = ({ navigation, ...props }) => {
 
   //this is the list of combatants.
   // --can be populated manually adding or by loading
-  const CombatantList = () => (
-    <View style={Styles.listArea}>
-      <FlatList
-        data={testData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        ListEmptyComponent={() => (
-          <Text style={Styles.defaultText}>{"<no mobs yet>"}</Text>
-        )}
-        keyboardShouldPersistTaps="always"
-      />
-    </View>
-  );
 
   return (
     <View style={Styles.container}>
       {preBattle && <PreBattleView />}
       {duringBattle && <DuringBattleView />}
-      {addingCombatant && <AddingCombatantView />}
+      {/*{addingCombatant && <AddingCombatantView />}
+      {savingCombat && <SavingCombatView />}
+      {loadingCombat && <LoadingCombatView />}
+      {namingCombat && <NamingCombatView />} */}
 
       {/*  
 
@@ -189,19 +220,7 @@ const CombatView = ({ navigation, ...props }) => {
       ## BOTH:
       -PLUS ICON BUTTON: with dropdown after pressing it, options: add individual in either pre-battle or during battle there's the option to add more combatants.
       -You can save your combat OR yoru group in pre-battle OR battle
-      -display the list of current combatants if there is one (both pre and during battle)
-
-
-      <View style={Styles.listArea}>
-      
-        <FlatList
-          data={testData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          ListEmptyComponent={() => <Text>{'<no mobs yet>'}</Text>}
-          keyboardShouldPersistTaps="always"
-        />
-      </View> */}
+    -display the list of current combatants if there is one (both pre and during battle)*/}
     </View>
   );
 };

@@ -15,22 +15,43 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 //import Icon from '@expo/vector-icons/MaterialIcons';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import Styles from "../../Style";
 
 const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
   return (
-    <TouchableOpacity style={styles.listItem}>
+    <TouchableOpacity>
       <View style={myTurn ? styles.listItemViewMyTurn : styles.listItemView}>
         <Text style={styles.listItemText}>{item.name} </Text>
+        <Text style={styles.listItemText}>{"init: " + item.init}</Text>
         <View style={styles.right}>
-          <TouchableOpacity style={styles.infoIcon}>
-            <Icon
-              name="info"
-              size={18}
-              color="#fff"
-              onPress={() => onInfoPress(item.id)}
-            />
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => onInfoPress(item.id)}
+          >
+            <Text
+              style={[
+                {
+                  color: "#aaa",
+                  fontSize: 15,
+                  borderWidth: 2,
+                  borderColor: "#aaa",
+                  borderRadius: 100,
+                  padding: 10,
+                  margin: 5,
+                  flex: 1,
+                  textAlign: "center",
+                },
+              ]}
+            >
+              i
+            </Text>
           </TouchableOpacity>
-          <View style={styles.qtyView}>
+          {/* 
+             I'm hiding this right now because this was the list view specifically for searching/adding/removing monsters and
+              now we're using this for combat view's simple initiative tracking list
+              and we might want it still for searching.
+
+            <View style={styles.qtyView}>
             <TouchableOpacity onPress={() => removeItem(item.id)}>
               <Icon name="remove" size={18} color="#c85c5c" />
             </TouchableOpacity>
@@ -40,7 +61,7 @@ const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
             <TouchableOpacity onPress={() => addItem(item.id)}>
               <Icon name="add" size={18} color="#c85c5c" />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </View>
     </TouchableOpacity>
@@ -48,17 +69,11 @@ const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
 };
 
 const styles = StyleSheet.create({
-  listItem: {
-    padding: 5,
-    backgroundColor: "#2f363c",
-    // borderWidth: 4,
-    // borderColor: 'blue',
-  },
   listItemView: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 4,
+    padding: 4, //added so border won't make it jump when it's "my turn"
   },
   listItemViewMyTurn: {
     flexDirection: "row",
@@ -67,12 +82,13 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: "green",
   },
-  infoIcon: {
-    margin: 3,
-  },
+
   right: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    // borderWidth: 4,
+    // borderColor: "green",
+    margin: 0,
+    padding: 0,
   },
   listItemText: { fontSize: 22, color: "#AAA" },
   qtyView: { flexDirection: "row", alignItems: "center" },
