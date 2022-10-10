@@ -1,12 +1,12 @@
-import uuid from 'react-native-uuid';
+import uuid from "react-native-uuid";
 
 //Action Type
-export const ADD_1 = 'ADD_1';
-export const REMOVE_MONSTER = 'REMOVE_MONSTER';
-export const LOAD_MONSTERS = 'LOAD_MONSTERS';
+export const ADD_1 = "ADD_1";
+export const REMOVE_MONSTER = "REMOVE_MONSTER";
+export const LOAD_MONSTERS = "LOAD_MONSTERS";
 
 //Action Creator
-export const addMonster = (monsterId) => ({type: ADD_1, payload: monsterId});
+export const addMonster = (monsterId) => ({ type: ADD_1, payload: monsterId });
 
 export const loadMonsters = (monsterList) => ({
   type: LOAD_MONSTERS,
@@ -18,21 +18,21 @@ export const removeMonster = (monsterId) => ({
   payload: monsterId,
 });
 //Initial State
-const initialState = {allMonsters: [], combatants: []};
+const initialState = { allMonsters: [], fighters: [] };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_1:
       let newMonsters = state.allMonsters.map((monster) =>
         monster.id == action.payload
-          ? {...monster, quantity: (monster.quantity += 1)}
-          : monster,
+          ? { ...monster, quantity: (monster.quantity += 1) }
+          : monster
       );
-      let newCombatants = newMonsters.filter((monster) => monster.quantity > 0);
+      let newFighters = newMonsters.filter((monster) => monster.quantity > 0);
       return {
         ...state,
         allMonsters: newMonsters,
-        combatants: newCombatants,
+        fighters: newFighters,
       };
 
     case LOAD_MONSTERS:
@@ -50,11 +50,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allMonsters: state.allMonsters.map((monster) =>
           monster.id == action.payload
-            ? {...monster, quantity: (monster.quantity -= 1)}
-            : monster,
+            ? { ...monster, quantity: (monster.quantity -= 1) }
+            : monster
         ),
 
-        combatants: state.allMonsters.filter((monster) => monster.quantity > 0),
+        fighters: state.allMonsters.filter((monster) => monster.quantity > 0),
       };
 
     default:

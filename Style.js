@@ -20,7 +20,6 @@ const Styles = StyleSheet.create({
     flex: 1,
     // borderColor: 'red',
     // borderWidth: 3,
-    // borderStyle: 'solid',
   },
   safeArea: {
     height: 30,
@@ -50,25 +49,13 @@ const Styles = StyleSheet.create({
   defaultText: {
     textAlign: "center",
     color: "#a5a0a0",
-    fontSize: 25,
+    fontSize: 20,
     letterSpacing: 1.2,
     // borderColor: "#a5a0a0",
     // borderWidth: 2,
     margin: "5%",
   },
 
-  extraLargeText: {
-    alignSelf: "center",
-    textAlign: "center",
-    color: "#a5a0a0",
-    fontSize: 25,
-    margin: "0%",
-    padding: "5%",
-    letterSpacing: 1.2,
-    // borderColor: "#a5a0a0",
-    // borderWidth: 2,
-    width: "25%",
-  },
   buttonView: {
     flexDirection: "row",
     justifyContent: "space-around",
@@ -78,13 +65,14 @@ const Styles = StyleSheet.create({
   addingInit: { marginRight: 0, height: "10%", marginBotton: 0 },
 
   someOptionsRow: {
-    flex: 1 / 9,
+    flex: 1,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
+    alignContent: "center",
     margin: 0,
     padding: 0,
-    // borderColor: "#a5a0a0",
-    // borderWidth: 2,
+    borderColor: "purple",
+    borderWidth: 2,
   },
 
   buttonMenu: {
@@ -94,6 +82,14 @@ const Styles = StyleSheet.create({
     justifyContent: "space-around",
     // borderWidth: 2,
     // borderColor: "cornflowerblue",
+  },
+  addFighterButton: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
+    borderWidth: 2,
+    borderColor: "darkgray",
   },
 });
 

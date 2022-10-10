@@ -26,7 +26,7 @@ const baseUrl = "http://dnd5eapi.co";
 
 const SearchView = ({ navigation }) => {
   const monsters = useSelector((state) => state.allMonsters);
-  const combatants = useSelector((state) => state.combatants);
+  const fighters = useSelector((state) => state.fighters);
 
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const SearchView = ({ navigation }) => {
   //       el.id == id ? {...el, quantity: (el.quantity -= 1)} : el,
   //     ),
   //   );
-  //   setCombatants((prev) => monsters.filter((el) => el.quantity > 0));
+  //   setFighters((prev) => monsters.filter((el) => el.quantity > 0));
   // };
 
   const renderItem = ({ item }) => (
@@ -90,14 +90,14 @@ const SearchView = ({ navigation }) => {
       ? null
       : monsters.filter((li) => li.name.match(new RegExp(searchTerm, "i")));
 
-  const renderCombatants = () => (
+  const renderFighters = () => (
     <View>
       <View>
         <Text style={Styles.defaultText}>My Mobs:</Text>
       </View>
       {/* this list is for the mobs you've already added from searches */}
       <FlatList
-        data={combatants}
+        data={fighters}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => <Text>{"<no mobs yet>"}</Text>}
@@ -117,7 +117,7 @@ const SearchView = ({ navigation }) => {
           style={Styles.searchTextInput}
           value={searchTerm}
           placeholderTextColor={"#fff"}
-          placeholder="Search for combatants to add..."
+          placeholder="Search for fighters to add..."
           onChangeText={onSearchInput}
           keyboardType="visible-password"
           multiline={false}
@@ -137,7 +137,7 @@ const SearchView = ({ navigation }) => {
           data={getListData()}
           renderItem={renderItem}
           keyExtractor={(item) => item.name}
-          ListEmptyComponent={() => renderCombatants()}
+          ListEmptyComponent={() => renderFighters()}
           keyboardShouldPersistTaps="always"
         />
       </View>

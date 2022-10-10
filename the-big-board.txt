@@ -12,38 +12,38 @@
  [ ] home screen:
     - new combat button (shows a modal to get the combat name, saves it and directs you to the combat screen)
     - save combat button (takes you to the combat screen)
-    - combatants button (takes you to the combatants screen)
+    - fighters button (takes you to the fighters screen)
 
  [ ] Combat screen (the main point of the app): 
     - name the combat if there isn't one, if don't want to name it there should be a default
     - keep track of what round it is
-    - keep track of the initiative order (each combatant has an initiative score, the list is sorted by score, the highest goes first, then the next...)
-    - button to add a new combatant
-    - list all currently added combatants
+    - keep track of the initiative order (each fighter has an initiative score, the list is sorted by score, the highest goes first, then the next...)
+    - button to add a new fighter
+    - list all currently added fighters
     - button to save this combat
-    - next button to advance on turn (if it's the last combatant's turn, pressing "next" advances the round and it's the first combatant's turn)
+    - next button to advance on turn (if it's the last fighter's turn, pressing "next" advances the round and it's the first fighter's turn)
     - states: pre-battle, during battle
     - when adding, it can be a player or a monster, or a group
      
  [ ] Info screen:
-    - user should be able to click on a monster/combatant and pull up a stat block. 
+    - user should be able to click on a monster/fighter and pull up a stat block. 
     - maybe this is too extra though, only need data enough to track initiative.
  
  
- [ ] combatants screen:
+ [ ] fighters screen:
     - button view prev saved groups
     - button to create a group
-    - view list of all saved individual combatants
-    - button to add a combatant for use later
-    - manage/edit/delete combatants/groups
+    - view list of all saved individual fighters
+    - button to add a fighter for use later
+    - manage/edit/delete fighters/groups
      
  
  [ ] create a group:
     - name the group
     - save the group
-    - search saved individual combatants to add
-    - add a new combatant to a group
-    - remove a combatant from a group
+    - search saved individual fighters to add
+    - add a new fighter to a group
+    - remove a fighter from a group
     - delete the group and go back
     - make a "quick group" of 1-5 or custom
   
