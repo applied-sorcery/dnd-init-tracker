@@ -102,6 +102,8 @@ const CombatView = () => {
     setShowCombatMenu(false);
     setShowNewCombatView(false);
     setPreBattle(true);
+    setRound(0);
+    setDuringBattle(false);
     setFighters(testData);
   };
 
@@ -141,20 +143,18 @@ const CombatView = () => {
   const CombatMenu = () => (
     <View style={Styles.combatMenu}>
       <View style={Styles.someButtonsColumn}>
-        <View
+        <TouchableOpacity
           style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+          onPress={onNewCombatPress}
         >
-          <TouchableOpacity onPress={onNewCombatPress}>
-            <Text style={Styles.defaultText}>NEW COMBAT</Text>
-          </TouchableOpacity>
-        </View>
-        <View
+          <Text style={Styles.defaultText}>NEW COMBAT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+          onPress={onLoadCombatPress}
         >
-          <TouchableOpacity onPress={onLoadCombatPress}>
-            <Text style={Styles.defaultText}>LOAD COMBAT</Text>
-          </TouchableOpacity>
-        </View>
+          <Text style={Styles.defaultText}>LOAD COMBAT</Text>
+        </TouchableOpacity>
       </View>
       <Text style={Styles.defaultText}>Recent Combats:</Text>
     </View>
@@ -183,34 +183,31 @@ const CombatView = () => {
       <View style={Styles.someButtonsColumn}>
         <Text style={Styles.defaultText}>New Combat:</Text>
         {/* save, load, add buttons goes here */}
-        <View
+        <TouchableOpacity
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+          onPress={onAddFighterPress}
+        >
+          <Text style={Styles.defaultText}>Add Fighter</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={onSaveCombatPress}
           style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
         >
-          <TouchableOpacity onPress={onAddFighterPress}>
-            <Text style={Styles.defaultText}>Add Fighter</Text>
-          </TouchableOpacity>
-        </View>
-        <View
+          <Text style={Styles.defaultText}>Save Combat</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+          onPress={onLoadCombatPress}
+        >
+          <Text style={Styles.defaultText}>Load Combat</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={onGoBackPress}
           style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
         >
-          <TouchableOpacity onPress={onSaveCombatPress}>
-            <Text style={Styles.defaultText}>Save Combat</Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
-        >
-          <TouchableOpacity onPress={onLoadCombatPress}>
-            <Text style={Styles.defaultText}>Load Combat</Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
-        >
-          <TouchableOpacity onPress={onGoBackPress}>
-            <Text style={Styles.defaultText}>Go Back</Text>
-          </TouchableOpacity>
-        </View>
+          <Text style={Styles.defaultText}>Go Back</Text>
+        </TouchableOpacity>
       </View>
       <Text style={Styles.defaultText}>Recent Fighters:</Text>
     </View>
@@ -276,34 +273,38 @@ const CombatView = () => {
         <>
           <View style={Styles.someOptionsRow}>
             {/* save, load, add buttons goes here */}
-            <View style={[Styles.controlButton, { minWidth: "10%" }]}>
-              <TouchableOpacity onPress={onAddFighterPress}>
-                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-                  Add Fighter
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={Styles.controlButton}>
-              <TouchableOpacity onPress={onSaveCombatPress}>
-                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-                  Save Combat
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={Styles.controlButton}>
-              <TouchableOpacity onPress={onLoadCombatPress}>
-                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-                  Load Combat
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={Styles.controlButton}>
-              <TouchableOpacity onPress={onGoBackPress}>
-                <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-                  Go Back
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              style={[Styles.controlButton, { minWidth: "10%" }]}
+              onPress={onAddFighterPress}
+            >
+              <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                Add Fighter
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={Styles.controlButton}
+              onPress={onSaveCombatPress}
+            >
+              <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                Save Combat
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={Styles.controlButton}
+              onPress={onLoadCombatPress}
+            >
+              <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                Load Combat
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={Styles.controlButton}
+              onPress={onGoBackPress}
+            >
+              <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+                Go Back
+              </Text>
+            </TouchableOpacity>
           </View>
           <View
             style={{
