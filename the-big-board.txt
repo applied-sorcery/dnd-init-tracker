@@ -39,29 +39,29 @@ __UI Considerations:__
  [ ] home screen:
     - new combat button (shows a modal to get the combat name, saves it and directs you to the combat screen)
     - save combat button (takes you to the combat screen)
-    - combatants button (takes you to the combatants screen)
+    - fighters button (takes you to the fighters screen)
 
  [ ] Combat screen (the main point of the app): 
     
  [ ] Info screen:
-    - user should be able to click on a monster/combatant and pull up a stat block. 
+    - user should be able to click on a monster/fighter and pull up a stat block. 
     - maybe this is too extra though, only need data enough to track initiative.
  
  
- [ ] combatants screen:
+ [ ] fighters screen:
     - button view prev saved groups
     - button to create a group
-    - view list of all saved individual combatants
-    - button to add a combatant for use later
-    - manage/edit/delete combatants/groups
+    - view list of all saved individual fighters
+    - button to add a fighter for use later
+    - manage/edit/delete fighters/groups
      
  
  [ ] create a group:
     - name the group
     - save the group
-    - search saved individual combatants to add
-    - add a new combatant to a group
-    - remove a combatant from a group
+    - search saved individual fighters to add
+    - add a new fighter to a group
+    - remove a fighter from a group
     - delete the group and go back
     - make a "quick group" of 1-5 or custom
   
