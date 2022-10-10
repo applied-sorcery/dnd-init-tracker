@@ -83,6 +83,8 @@ const CombatView = () => {
 
   const onLoadCombatantPress = () => {};
 
+  const onSaveCombatPress = () => {};
+
   const onPlusIconPress = () => {};
 
   const onStartPress = () => {
@@ -120,6 +122,8 @@ const CombatView = () => {
     </>
   );
 
+  //this is the list of added/ready combatants. it can be populated manually or
+  // by loading groups/individuals
   const CombatantList = () => (
     <View style={Styles.listArea}>
       <FlatList
@@ -134,6 +138,8 @@ const CombatView = () => {
     </View>
   );
 
+  //this displays when the user presses the new combat button or when
+  //there are no saved combats to load
   const NewCombatView = () => (
     <>
       <Text style={Styles.defaultText}>New Combat:</Text>
@@ -155,12 +161,14 @@ const CombatView = () => {
     <>
       <Text style={Styles.defaultText}>{"Round: " + round}</Text>
       <CombatantList />
-      <TouchableOpacity onPress={onNextPress}>
-        <Text style={Styles.button}>NEXT</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onResetPress}>
-        <Text style={Styles.button}>RESET</Text>
-      </TouchableOpacity>
+      <View style={Styles.buttonMenu}>
+        <TouchableOpacity onPress={onNextPress}>
+          <Text style={Styles.button}>NEXT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onResetPress}>
+          <Text style={Styles.button}>RESET</Text>
+        </TouchableOpacity>
+      </View>
     </>
   );
 
@@ -175,52 +183,31 @@ const CombatView = () => {
       {!combatants ? (
         <>{isNewCombat() ? <NewCombatView /> : <CombatMenu />}</>
       ) : (
-        <View style={Styles.container}>
-          <Text style={Styles.defaultText}>--</Text>
+        <View style={[Styles.container, { flex: 1 }]}>
+          <Text style={Styles.defaultText}> [get ready] </Text>
           <CombatantList />
-          <TouchableOpacity onPress={onStartPress}>
-            <Text style={Styles.button}>START</Text>
-          </TouchableOpacity>
+          <View style={Styles.buttonMenu}>
+            <TouchableOpacity onPress={onStartPress}>
+              <Text style={Styles.button}>START</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </>
   );
 
-  //this is the list of combatants.
-  // --can be populated manually adding or by loading
-
   return (
+    //this is view returned by the combatView component.
+    //different sub view components are rendered based on state.
     <View style={Styles.container}>
+      <View style={Styles.someOptionsRow}></View>
       {preBattle && <PreBattleView />}
       {duringBattle && <DuringBattleView />}
+
       {/*{addingCombatant && <AddingCombatantView />}
       {savingCombat && <SavingCombatView />}
       {loadingCombat && <LoadingCombatView />}
       {namingCombat && <NamingCombatView />} */}
-
-      {/*  
-
-      ## PRE-BATTLE:
-      -the entry point to the combat screen should immediately  
-      show the "new combat" UI component if there are no saved combats 
-      
-      {isNewCombat() ? <NewCombatView />: <CombatMenu />} 
-
-
-
-      ### the requirements to be able to start a battle: 
-       1) there are some combatants loaded
-       2) they all have initiative scores
-
-      -once the above reqs are met, the START BUTTON becomes available
-
-      ## BATTLE:
-      -NEXT BUTTON appears
-
-      ## BOTH:
-      -PLUS ICON BUTTON: with dropdown after pressing it, options: add individual in either pre-battle or during battle there's the option to add more combatants.
-      -You can save your combat OR yoru group in pre-battle OR battle
-    -display the list of current combatants if there is one (both pre and during battle)*/}
     </View>
   );
 };

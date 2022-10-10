@@ -3,18 +3,16 @@ import Colors from "./Colors";
 
 const Styles = StyleSheet.create({
   button: {
-    alignSelf: "center",
+    flex: 1 / 3,
     textAlign: "center",
+    textAlignVertical: "center",
     color: "#a5a0a0",
     fontSize: 16,
     margin: "1%",
     letterSpacing: 1,
-    lineHeight: 20,
     borderRadius: 2,
     borderColor: "#a5a0a0",
     borderWidth: 1,
-    padding: 5,
-    width: "55%",
   },
 
   container: {
@@ -39,7 +37,7 @@ const Styles = StyleSheet.create({
   listArea: {
     flex: 3,
     // borderWidth: 4,
-    // borderColor: 'white',
+    // borderColor: "white",
   },
   ListItemText: { color: "#c85c5c" },
   searchTextInput: {
@@ -53,9 +51,10 @@ const Styles = StyleSheet.create({
     textAlign: "center",
     color: "#a5a0a0",
     fontSize: 25,
-    margin: "20%",
     letterSpacing: 1.2,
-    lineHeight: 40,
+    // borderColor: "#a5a0a0",
+    // borderWidth: 2,
+    margin: "5%",
   },
 
   extraLargeText: {
@@ -66,8 +65,8 @@ const Styles = StyleSheet.create({
     margin: "0%",
     padding: "5%",
     letterSpacing: 1.2,
-    borderColor: "#a5a0a0",
-    borderWidth: 2,
+    // borderColor: "#a5a0a0",
+    // borderWidth: 2,
     width: "25%",
   },
   buttonView: {
@@ -77,6 +76,25 @@ const Styles = StyleSheet.create({
   plusIcon: {},
   addingName: { marginRight: 0, height: "50%", marginTop: 0 },
   addingInit: { marginRight: 0, height: "10%", marginBotton: 0 },
+
+  someOptionsRow: {
+    flex: 1 / 9,
+    flexDirection: "row",
+    justifyContent: "center",
+    margin: 0,
+    padding: 0,
+    // borderColor: "#a5a0a0",
+    // borderWidth: 2,
+  },
+
+  buttonMenu: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    // borderWidth: 2,
+    // borderColor: "cornflowerblue",
+  },
 });
 
 export default Styles;
