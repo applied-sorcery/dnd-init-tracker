@@ -1,10 +1,37 @@
-
+# DESIGN NOTES
 
 ## What is it?
 -a simple tool to keep track of turn order in a dnd combat
 -not a combat simulator
 -not a compendium of info about dnd monsters
 -used by DM not visible to players (unless you want?)
+
+## COMBAT SCREEN
+
+### UI Elements
+
+- Combat name (text input): save/load unfinished combats
+- Round number (text)
+- List of fighters (players + mobs): tracking initiative order, highest roll goes first
+    - initiative score (text)
+    - fighter name (text)
+- Add fighter (button)
+    - Fighter initiative score (number input)
+    - Fighter Name (string input)
+    - confirm button
+- Save combat (button)
+- Next turn/fighter (button)
+
+__UI Considerations:__ 
+
+*Things you might want to add later*
+
+- Will want to add saved fighters or groups of fighters
+- Feature to automatically save combats
+- Generate (roll) initiative scores in-app
+-allow default names as a shortcut
+  -for combats (when saving combat) 
+  -for fighters (when inputting name + init score)
 
 
 ## screens required: 
@@ -15,16 +42,7 @@
     - combatants button (takes you to the combatants screen)
 
  [ ] Combat screen (the main point of the app): 
-    - name the combat if there isn't one, if don't want to name it there should be a default
-    - keep track of what round it is
-    - keep track of the initiative order (each combatant has an initiative score, the list is sorted by score, the highest goes first, then the next...)
-    - button to add a new combatant
-    - list all currently added combatants
-    - button to save this combat
-    - next button to advance on turn (if it's the last combatant's turn, pressing "next" advances the round and it's the first combatant's turn)
-    - states: pre-battle, during battle
-    - when adding, it can be a player or a monster, or a group
-     
+    
  [ ] Info screen:
     - user should be able to click on a monster/combatant and pull up a stat block. 
     - maybe this is too extra though, only need data enough to track initiative.
