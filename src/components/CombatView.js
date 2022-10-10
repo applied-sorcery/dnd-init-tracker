@@ -35,12 +35,13 @@ const CombatView = () => {
   //   },
   // ]
 
-  const [fighters, setFighters] = useState([
-    // { id: "1", name: "tim", initScore: 2 },
-    // { id: "2", name: "katie", initScore: 20 },
-    // { id: "3", name: "todd", initScore: 19 },
-    // { id: "4", name: "sarah", initScore: 13 },
-  ]);
+  const [fighters, setFighters] = useState([]);
+  // [
+  // { id: "1", name: "tim", initScore: 2 },
+  // { id: "2", name: "katie", initScore: 20 },
+  // { id: "3", name: "todd", initScore: 19 },
+  // { id: "4", name: "sarah", initScore: 13 },
+  // ]
 
   //some dummy data: when this array is uncommented, there are 4 currently added/ready fighters, they should be displayed
   //if this array is commented out, there are no loaded fighters and the plus sign to add fighters is front and center
@@ -92,7 +93,7 @@ const CombatView = () => {
 
   const onSaveCombatPress = () => {};
 
-  const onPlusIconPress = () => {};
+  const onAddFighterPress = () => {};
 
   const onStartPress = () => {
     setWhoseTurn(0);
@@ -215,23 +216,30 @@ const CombatView = () => {
     <View style={Styles.container}>
       <View style={Styles.someOptionsRow}>
         {/* save, load, add buttons goes here */}
-        <View style={Styles.addFighterButton}>
-          <TouchableOpacity onPress={onPlusIconPress}>
+        <View style={Styles.controlButton}>
+          <TouchableOpacity onPress={onAddFighterPress}>
             <Text style={Styles.defaultText}>Add Fighter</Text>
           </TouchableOpacity>
         </View>
-        <View style={Styles.addFighterButton}>
-          <TouchableOpacity onPress={onPlusIconPress}>
+        <View style={Styles.controlButton}>
+          <TouchableOpacity onPress={onSaveCombatPress}>
             <Text style={Styles.defaultText}>Save Combat</Text>
           </TouchableOpacity>
         </View>
-        <View style={Styles.addFighterButton}>
-          <TouchableOpacity onPress={onPlusIconPress}>
+        <View style={Styles.controlButton}>
+          <TouchableOpacity onPress={onLoadCombatPress}>
             <Text style={Styles.defaultText}>Load Combat</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ flex: 1, minHeight: "75%" }}>
+      <View
+        style={{
+          flex: 1,
+          minHeight: "75%",
+          borderWidth: 5,
+          borderColor: "cornflowerblue",
+        }}
+      >
         {preBattle && <PreBattleView />}
         {duringBattle && <DuringBattleView />}
       </View>

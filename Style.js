@@ -83,7 +83,7 @@ const Styles = StyleSheet.create({
     // borderWidth: 2,
     // borderColor: "cornflowerblue",
   },
-  addFighterButton: {
+  controlButton: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
