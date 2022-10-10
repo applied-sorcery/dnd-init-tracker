@@ -26,6 +26,9 @@ const baseUrl = "http://dnd5eapi.co";
 
 const CombatView = ({ navigation, ...props }) => {
   //mock data:
+
+  const [addingCombatant, setAddingCombatant] = useState(false);
+  const [duringBattle, setDuringBattle] = useState(false);
   const [round, setRound] = useState(0);
   const [addingName, setAddingName] = useState(false);
   const [addingInit, setAddingInit] = useState(false);
@@ -73,17 +76,7 @@ const CombatView = ({ navigation, ...props }) => {
 
   const onLoadCombatantPress = () => {};
 
-  const onPlusIconPress = () => {
-    if (addingInit) {
-      setAddingInit(false);
-    }
-    if (addingName) {
-      setAddingName(false);
-      setAddingInit(true);
-    } else {
-      setAddingName(true);
-    }
-  };
+  const onPlusIconPress = () => {};
 
   const onResetPress = () => {
     setRound(0);
@@ -106,7 +99,7 @@ const CombatView = ({ navigation, ...props }) => {
   const NewCombatView = () => (
     <>
       <Text style={Styles.defaultText}>New Combat:</Text>
-      <View style={{ borderColor: "red", borderWidth: 2 }}>
+      <View>
         <TouchableOpacity
           style={
             addingName ? Styles.addingName : addingInit ? Styles.addingInit : {}
@@ -167,7 +160,6 @@ const CombatView = ({ navigation, ...props }) => {
     <View style={Styles.container}>
       {preBattle && <PreBattleView />}
       {duringBattle && <DuringBattleView />}
-      {addingCombatant && <AddingCombatantView />}
       {addingCombatant && <AddingCombatantView />}
 
       {/*  
