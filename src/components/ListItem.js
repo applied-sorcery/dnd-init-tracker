@@ -22,10 +22,10 @@ const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
     <TouchableOpacity>
       <View style={myTurn ? styles.listItemViewMyTurn : styles.listItemView}>
         <Text style={styles.listItemText}>{item.name} </Text>
-        <Text style={styles.listItemText}>{"init: " + item.initScore}</Text>
-        <View style={styles.right}>
+        <Text style={[styles.listItemText]}>{"init: " + item.initScore}</Text>
+        <View style={styles.listItemText}>
           <TouchableOpacity
-            style={styles.Button}
+            style={{ margin: 0, padding: 0, alignSelf: "flex-end" }}
             onPress={() => onInfoPress(item.id)}
           >
             <Text
@@ -35,11 +35,12 @@ const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
                   fontSize: 15,
                   borderWidth: 2,
                   borderColor: "#aaa",
-                  borderRadius: 100,
-                  padding: 10,
-                  margin: 5,
-                  flex: 1,
+                  borderRadius: 50,
+                  padding: 12,
+                  paddingTop: 2,
+                  paddingBottom: -5,
                   textAlign: "center",
+                  maxWidth: 20,
                 },
               ]}
             >
@@ -71,7 +72,7 @@ const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
 const styles = StyleSheet.create({
   listItemView: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
     padding: 4, //added so border won't make it jump when it's "my turn"
   },
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
   },
-  listItemText: { fontSize: 22, color: "#AAA" },
+  listItemText: { flex: 1, fontSize: 22, color: "#AAA" },
   qtyView: { flexDirection: "row", alignItems: "center" },
 });
 
