@@ -7,13 +7,17 @@
  */
 
 import React, { useState } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { 
+  View, Text, FlatList, TouchableOpacity,
+  Modal, Alert
+} from "react-native";
 import ListItem from "./ListItem.js";
 import Styles from "../../Style";
 
 const baseUrl = "http://dnd5eapi.co";
 
 const CombatView = () => {
+  const [addFighterModalVisible, setAddFighterModalVisible] = useState(false)
   const [round, setRound] = useState(0);
   const [whoseTurn, setWhoseTurn] = useState();
   const [duringBattle, setDuringBattle] = useState(false);
@@ -96,7 +100,8 @@ const CombatView = () => {
     setShowCombatMenu(false);
   };
 
-  const onNewFighterPress = () => {};
+  const onNewFighterPress = () => {
+  }
 
   const onLoadCombatPress = () => {
     setShowCombatMenu(false);
@@ -111,7 +116,10 @@ const CombatView = () => {
 
   const onSaveCombatPress = () => {};
 
-  const onAddFighterPress = () => {};
+  const onAddFighterPress = () => {
+    setAddFighterModalVisible(true)
+  }
+
   const onGoBackPress = () => {
     setShowCombatMenu(true);
     setShowNewCombatView(false);
@@ -140,6 +148,21 @@ const CombatView = () => {
   };
 
   //function components
+  const AddFighterView = () => {
+    //const [modalVisible, setModalVisible] = useState(false)
+    return (
+      <Modal
+        visible={addFighterModalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.")
+          setAddFighterModalVisible(!addFighterModalVisible)
+        }}
+      >
+        <Text style={{fontSize: 30, color: 'black'}}>Hello, I am your modal.</Text>
+      </Modal>
+    )
+  }
+
   const CombatMenu = () => (
     <View style={Styles.combatMenu}>
       <View style={Styles.someButtonsColumn}>
@@ -265,6 +288,7 @@ const CombatView = () => {
     //different sub view components are rendered based on state.
 
     <View style={Styles.container}>
+      <AddFighterView />
       {showCombatMenu ? (
         <CombatMenu />
       ) : showNewCombatView ? (
