@@ -44,7 +44,7 @@ const Styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 22,
     padding: 10,
-    color: "white",
+    color: "#a5a0a0",
   },
   defaultText: {
     textAlign: "center",
@@ -56,7 +56,7 @@ const Styles = StyleSheet.create({
     margin: "5%",
   },
 
-  someOptionsRow: {
+  controlButtonRow: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
@@ -65,7 +65,7 @@ const Styles = StyleSheet.create({
     maxWidt: "10%",
     margin: 0,
     padding: 0,
-    borderColor: "purple",
+    // borderColor: "purple",
     // borderWidth: 2,
   },
 

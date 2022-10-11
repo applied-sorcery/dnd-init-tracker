@@ -67,7 +67,7 @@ const SearchView = ({ navigation }) => {
   //       el.id == id ? {...el, quantity: (el.quantity -= 1)} : el,
   //     ),
   //   );
-  //   setFighters((prev) => monsters.filter((el) => el.quantity > 0));
+  //   setCombatants((prev) => monsters.filter((el) => el.quantity > 0));
   // };
 
   const renderItem = ({ item }) => (
@@ -90,7 +90,7 @@ const SearchView = ({ navigation }) => {
       ? null
       : monsters.filter((li) => li.name.match(new RegExp(searchTerm, "i")));
 
-  const renderFighters = () => (
+  const renderCombatants = () => (
     <View>
       <View>
         <Text style={Styles.defaultText}>My Mobs:</Text>
@@ -137,7 +137,7 @@ const SearchView = ({ navigation }) => {
           data={getListData()}
           renderItem={renderItem}
           keyExtractor={(item) => item.name}
-          ListEmptyComponent={() => renderFighters()}
+          ListEmptyComponent={() => renderCombatants()}
           keyboardShouldPersistTaps="always"
         />
       </View>

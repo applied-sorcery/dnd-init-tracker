@@ -17,13 +17,22 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Styles from "../../Style";
 
-const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
+const ListItem = ({
+  item,
+  addItem,
+  removeItem,
+  onInfoPress,
+  myTurn,
+  onPress,
+}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress ? () => onPress(item) : null}>
       <View style={myTurn ? styles.listItemViewMyTurn : styles.listItemView}>
         <Text style={styles.listItemText}>{item.name} </Text>
-        <Text style={[styles.listItemText]}>{"init: " + item.initScore}</Text>
-        <View style={styles.listItemText}>
+        <Text style={[styles.listItemText]}>
+          {item.initScore ? "init: " + item.initScore : ""}
+        </Text>
+        {/* <View style={styles.listItemText}>
           <TouchableOpacity
             style={{ margin: 0, padding: 0, alignSelf: "flex-end" }}
             onPress={() => onInfoPress(item.id)}
@@ -62,8 +71,8 @@ const ListItem = ({ item, addItem, removeItem, onInfoPress, myTurn }) => {
             <TouchableOpacity onPress={() => addItem(item.id)}>
               <Icon name="add" size={18} color="#c85c5c" />
             </TouchableOpacity>
-          </View> */}
-        </View>
+          </View> 
+        </View> */}
       </View>
     </TouchableOpacity>
   );
