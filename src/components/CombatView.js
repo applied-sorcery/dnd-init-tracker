@@ -7,11 +7,11 @@
  */
 
 import React, { useState } from "react";
-import { 
+import {
   View, Text, FlatList, TouchableOpacity,
   Modal,
   Alert,
-  Pressable, 
+  Pressable,
   Button,
   TextInput,
 } from "react-native";
@@ -32,25 +32,29 @@ const CombatView = () => {
   // Add Fighter
 
   const [addFighterModalVisible, setAddFighterModalVisible] = useState(false)
-  const [addFighterName, setAddFighterName] = useState()
 
   const onAddFighterPress = () => {
     setAddFighterModalVisible(true)
   }
 
-/*
-  const handleAddFighterSubmit = (fighter) => {
-    setFighters([...fighters, fighter])
+  const handleAddFighterSubmit = (name, initScore) => {
+    //setAddFighterName(name)
+    setFighters([
+      ...fighters,
+      {
+        id: fighters.length + 1,
+        name: name,
+        initScore: initScore,
+      }
+    ])
+    setPreBattle(true)
+    setShowNewCombatView(false)
   }
-*/
-
-  const handleAddFighterSubmit = (fighter) => {
-    setAddFighterName(fighter)
-  } 
 
   const AddFighterView = ({onAddFighterSubmit}) => {
-    const [name, setName] = useState()
-    //const [addFighterName, setAddFighterName] = useState()
+    const [name, setName] = useState('Unknown')
+    const [initScore, setInitScore] = useState('0')
+
     return (
       <Modal
         visible={addFighterModalVisible}
@@ -78,15 +82,20 @@ const CombatView = () => {
           <TextInput
             keyboardType='numeric'
             placeholder='0'
+            onChangeText={(initScore) => {
+              setInitScore(initScore)
+            }}
           />
           <Button
             title="Submit"
             onPress={() => {
-              onAddFighterSubmit(name)
+              onAddFighterSubmit(name, initScore)
             }}
           />
           <Text style={{fontSize:30}}>Input: {name}</Text>
-          <Text style={{fontSize:30}}>Submit: {addFighterName}</Text>
+          <Text style={{fontSize:30}}>Submit: {
+            fighters.length > 0 && fighters[fighters.length - 1]['name']
+          }</Text>
           <Button
             title="Close Modal"
             onPress={() => setAddFighterModalVisible(!addFighterModalVisible)}
@@ -344,6 +353,7 @@ const CombatView = () => {
       <AddFighterView
         onAddFighterSubmit={handleAddFighterSubmit}
       />
+      {/*<FighterList />*/}
       {showCombatMenu ? (
         <CombatMenu />
       ) : showNewCombatView ? (
@@ -405,7 +415,7 @@ const CombatView = () => {
       )}
     </View>
   );
-  
+
 
 };
 
