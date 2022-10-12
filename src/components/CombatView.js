@@ -32,13 +32,25 @@ const CombatView = () => {
   // Add Fighter
 
   const [addFighterModalVisible, setAddFighterModalVisible] = useState(false)
+  const [addFighterName, setAddFighterName] = useState()
 
   const onAddFighterPress = () => {
     setAddFighterModalVisible(true)
   }
 
+/*
+  const handleAddFighterSubmit = (fighter) => {
+    setFighters([...fighters, fighter])
+  }
+*/
+
+  const handleAddFighterSubmit = (fighter) => {
+    setAddFighterName(fighter)
+  } 
+
   const AddFighterView = (props) => {
     const [name, setName] = useState()
+    //const [addFighterName, setAddFighterName] = useState()
     return (
       <Modal
         visible={addFighterModalVisible}
@@ -47,30 +59,44 @@ const CombatView = () => {
           setAddFighterModalVisible(!addFighterModalVisible)
         }}
       >
-        <Text style={{fontSize: 30, color: 'black'}}>Hello, I am your modal.</Text>
-        <Text>Fighter Name:</Text>
-        <TextInput
-          placeholder='Name of player or enemy'
-          onChangeText={(name) => {
-            setName(name)
-          }}
-        />
-        <Text>Initiative Score:</Text>
-        <TextInput
-          keyboardType='numeric'
-          placeholder='0'
-        />
-        <Button
-          title="Submit"
-          onPress={() => {
-            //do something with the name text
-          }}
-        />
-        <Text style={{fontSize:30}}>Input: {name}</Text>
-        <Button
-          title="Close Modal"
-          onPress={() => setAddFighterModalVisible(!addFighterModalVisible)}
-        />
+        <View style={{backgroundColor:'black'}}>
+          <Text style={{fontSize: 30}}>Hello, I am your modal.</Text>
+          <Text>Fighter Name:</Text>
+          <TextInput
+            placeholder='Name of player or enemy'
+            blurOnSubmit={true}
+            onSubmitEditing={(name) => {
+              //setAddFighterName(name.nativeEvent.text)
+              //setName(name.nativeEvent.text)
+              //console.log(name.nativeEvent)
+            }}
+            onChangeText={(name) => {
+              setName(name)
+            }}
+          />
+          <Text>Initiative Score:</Text>
+          <TextInput
+            keyboardType='numeric'
+            placeholder='0'
+          />
+          <Button
+            title="Submit"
+            onPress={() => {
+              props.onAddFighterSubmit(name)
+            }}
+          />
+          <Button
+            title="Broke Submit"
+            //onPress={props.onAddFighterSubmit(name)}
+            onPress={() => {}}
+          />
+          <Text style={{fontSize:30}}>Input: {name}</Text>
+          <Text style={{fontSize:30}}>Submit: {addFighterName}</Text>
+          <Button
+            title="Close Modal"
+            onPress={() => setAddFighterModalVisible(!addFighterModalVisible)}
+          />
+        </View>
       </Modal>
     )
   } // Add Fighter
@@ -192,10 +218,6 @@ const CombatView = () => {
     setPreBattle(true);
     setDuringBattle(false);
   };
-
-  const onAddFighterSubmit = (fighter) => {
-    setFighters([...fighters, fighter])
-  }
 
   //function components
 
@@ -324,7 +346,9 @@ const CombatView = () => {
     //different sub view components are rendered based on state.
 
     <View style={Styles.container}>
-      <AddFighterView onAddFighterSubmit={onAddFighterSubmit}/>
+      <AddFighterView
+        onAddFighterSubmit={handleAddFighterSubmit}
+      />
       {showCombatMenu ? (
         <CombatMenu />
       ) : showNewCombatView ? (
