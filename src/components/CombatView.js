@@ -48,7 +48,7 @@ const CombatView = () => {
     setAddFighterName(fighter)
   } 
 
-  const AddFighterView = (props) => {
+  const AddFighterView = ({onAddFighterSubmit}) => {
     const [name, setName] = useState()
     //const [addFighterName, setAddFighterName] = useState()
     return (
@@ -82,13 +82,8 @@ const CombatView = () => {
           <Button
             title="Submit"
             onPress={() => {
-              props.onAddFighterSubmit(name)
+              onAddFighterSubmit(name)
             }}
-          />
-          <Button
-            title="Broke Submit"
-            //onPress={props.onAddFighterSubmit(name)}
-            onPress={() => {}}
           />
           <Text style={{fontSize:30}}>Input: {name}</Text>
           <Text style={{fontSize:30}}>Submit: {addFighterName}</Text>
