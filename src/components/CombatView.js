@@ -37,23 +37,22 @@ const CombatView = () => {
     setAddFighterModalVisible(true)
   }
 
-  const handleAddFighterSubmit = (name, initScore) => {
-    //setAddFighterName(name)
+  const handleAddFighterSubmit = (newFighter) => {
     setFighters([
       ...fighters,
-      {
-        id: fighters.length + 1,
-        name: name,
-        initScore: initScore,
-      }
+      newFighter
     ])
+    // Required for list of fighters to show in CombatView
     setPreBattle(true)
     setShowNewCombatView(false)
   }
 
   const AddFighterView = ({onAddFighterSubmit}) => {
-    const [name, setName] = useState('Unknown')
-    const [initScore, setInitScore] = useState('0')
+    const [newFighter, setNewFighter] = useState({
+      id: newFighterId(),
+      name: 'NA',
+      initScore: '0'
+    })
 
     return (
       <Modal
@@ -68,14 +67,8 @@ const CombatView = () => {
           <Text>Fighter Name:</Text>
           <TextInput
             placeholder='Name of player or enemy'
-            blurOnSubmit={true}
-            onSubmitEditing={(name) => {
-              //setAddFighterName(name.nativeEvent.text)
-              //setName(name.nativeEvent.text)
-              //console.log(name.nativeEvent)
-            }}
             onChangeText={(name) => {
-              setName(name)
+              setNewFighter({...newFighter, name: name})
             }}
           />
           <Text>Initiative Score:</Text>
@@ -83,16 +76,16 @@ const CombatView = () => {
             keyboardType='numeric'
             placeholder='0'
             onChangeText={(initScore) => {
-              setInitScore(initScore)
+              setNewFighter({...newFighter, initScore: initScore})
             }}
           />
           <Button
             title="Submit"
             onPress={() => {
-              onAddFighterSubmit(name, initScore)
+              onAddFighterSubmit(newFighter)
             }}
           />
-          <Text style={{fontSize:30}}>Input: {name}</Text>
+          <Text style={{fontSize:30}}>Input: {newFighter['name']}</Text>
           <Text style={{fontSize:30}}>Submit: {
             fighters.length > 0 && fighters[fighters.length - 1]['name']
           }</Text>
@@ -152,6 +145,10 @@ const CombatView = () => {
   ]);
 
   //helper functions
+  const newFighterId = () => {
+    return fighters.length + 1
+  }
+
   const isNewCombat = () => {
     console.log("isNewCombat()");
     return savedCombats;
