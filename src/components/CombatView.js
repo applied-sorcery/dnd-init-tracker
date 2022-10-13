@@ -129,13 +129,14 @@ const CombatView = () => {
                 style={styles.button}
                 onPress={() => {
                   onAddFighterSubmit(newFighter)
+                  setAddFighterModalVisible(false)
                 }}
               >
                 <Text style={styles.btnText}>Submit</Text>
               </Pressable>
               <Pressable
                 style={styles.button}
-                onPress={() => setAddFighterModalVisible(!addFighterModalVisible)}
+                onPress={() => setAddFighterModalVisible(false)}
               >
                 <Text style={styles.btnText}>Cancel</Text>
               </Pressable>
