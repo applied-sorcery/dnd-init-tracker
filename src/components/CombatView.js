@@ -21,6 +21,7 @@ import NewCombatView from "./NewCombatView.js";
 import NameCombatView from "./NameCombatView.js";
 import ControlButtons from "./ControlButtons.js";
 import Styles from "../../Style";
+import AddFighterView from "./AddFighterView.js";
 
 const baseUrl = "http://dnd5eapi.co";
 
@@ -56,127 +57,8 @@ const CombatView = () => {
   };
   // const [showCombatMenu, setShowCombatMenu] = useState(true);
   const [showNewCombatView, setShowNewCombatView] = useState(false);
-
-  // Add Fighter
+  const [showNameCombatView, setShowNameCombatView] = useState(false);
   const [addFighterModalVisible, setAddFighterModalVisible] = useState(false);
-
-  const onAddFighterPress = () => {
-    setAddFighterModalVisible(true);
-  };
-
-  const handleAddFighterSubmit = (newFighter) => {
-    setFighters([...fighters, newFighter]);
-    // Required for list of fighters to show in CombatView
-    setPreBattle(true);
-    setShowNewCombatView(false);
-  };
-
-  const AddFighterView = ({ onAddFighterSubmit }) => {
-    const [newFighter, setNewFighter] = useState({
-      id: newFighterId(),
-      name: "NA",
-      initScore: "0",
-    });
-
-    const styles = StyleSheet.create({
-      container: {
-        // top padding or margin crashes app
-        height: "100%",
-        backgroundColor: "black",
-      },
-      content: {
-        marginHorizontal: 25,
-        marginVertical: 50,
-      },
-      text: {
-        fontSize: 20,
-        marginBottom: 10,
-      },
-      input: {
-        backgroundColor: "#666",
-        marginBottom: 30,
-      },
-      header: {
-        fontSize: 30,
-        marginBottom: 30,
-      },
-      btnWrapper: {
-        alignItems: "center",
-        marginTop: 30,
-      },
-      button: {
-        alignItems: "center",
-        width: "75%",
-        backgroundColor: "#3399ff",
-        marginBottom: 20,
-        paddingVertical: 10,
-        borderRadius: 2,
-      },
-      btnText: {
-        fontSize: 15,
-        textTransform: "uppercase",
-        color: "white",
-        fontWeight: "500",
-      },
-    });
-
-    return (
-      <Modal
-        animationType="slide"
-        visible={addFighterModalVisible}
-        onRequestClose={() => {
-          setAddFighterModalVisible(!addFighterModalVisible);
-        }}
-      >
-        <View style={styles.container}>
-          <View style={styles.content}>
-            <Text style={styles.header}>Create a new fighter</Text>
-            <Text style={styles.text}>Fighter Name:</Text>
-            <TextInput
-              style={[styles.text, styles.input]}
-              placeholder="Name of player or enemy"
-              onChangeText={(name) => {
-                setNewFighter({ ...newFighter, name: name });
-              }}
-            />
-            <Text style={styles.text}>Initiative Score:</Text>
-            <TextInput
-              style={[styles.text, styles.input]}
-              keyboardType="numeric"
-              placeholder="0"
-              onChangeText={(initScore) => {
-                setNewFighter({ ...newFighter, initScore: initScore });
-              }}
-            />
-            <View style={styles.btnWrapper}>
-              <Pressable
-                style={styles.button}
-                onPress={() => {
-                  onAddFighterSubmit(newFighter);
-                  setAddFighterModalVisible(false);
-                }}
-              >
-                <Text style={styles.btnText}>Submit</Text>
-              </Pressable>
-              <Pressable
-                style={styles.button}
-                onPress={() => setAddFighterModalVisible(false)}
-              >
-                <Text style={styles.btnText}>Cancel</Text>
-              </Pressable>
-            </View>
-            {/* Monitor values for input and submit
-            <Text style={{fontSize:30}}>Input: {newFighter['name']}</Text>
-            <Text style={{fontSize:30}}>Submit: {
-              fighters.length > 0 && fighters[fighters.length - 1]['name']
-            }</Text>
-            */}
-          </View>
-        </View>
-      </Modal>
-    );
-  }; // Add Fighter
-
   const [savedCombats, setSavedCombats] = useState([
     {
       id: 1,
@@ -235,8 +117,18 @@ const CombatView = () => {
   );
 
   //button press handlers
+
+  const handleAddFighterSubmit = (newFighter) => {
+    setFighters([...fighters, newFighter]);
+    setCurrentView("PreBattle");
+  };
+
+  const onAddFighterPress = () => {
+    console.log("inside onAddFighterPress");
+    setAddFighterModalVisible(true);
+  };
+
   const onNewCombatPress = () => {
-    setCombatObject({});
     setCurrentView("NewCombat");
   };
 
@@ -251,8 +143,8 @@ const CombatView = () => {
     // console.log("combatObj:", combatObj);
     // setShowCombatMenu(false);
     // setShowNewCombatView(false);
-    setShowSavedCombats(false);
 
+    setCurrentView("PreBattle");
     setCombatObject({ ...combatObj });
     // console.log("you just loaded this combat---> ", combatObj);
     // console.log("now combatObject is: ", combatObject);
@@ -286,11 +178,11 @@ const CombatView = () => {
   const onMenuPress = () => {
     setCurrentView("CombatMenu");
   };
+
   const onStartPress = () => {
     if (round == 0) {
       setCombatObject({
         ...combatObject,
-        battlePhase: "duringBattle",
         round: 1,
       });
     }
@@ -317,7 +209,6 @@ const CombatView = () => {
   const onResetPress = () => {
     setCombatObject({
       ...combatObject,
-      battlePhase: "preBattle",
       whoseTurn: 0,
       round: 0,
     });
@@ -331,6 +222,7 @@ const CombatView = () => {
     <View style={Styles.container}>
       {currentView !== "CombatMenu" ? (
         <ControlButtons
+          onAddFighterPress={onAddFighterPress}
           onLoadCombatPress={onLoadCombatPress}
           onSaveCombatPress={onSaveCombatPress}
           onMenuPress={onMenuPress}
@@ -382,6 +274,12 @@ const CombatView = () => {
           />
         )}
       </View>
+      <AddFighterView
+        onAddFighterSubmit={handleAddFighterSubmit}
+        newFighterId={newFighterId}
+        addFighterModalVisible={addFighterModalVisible}
+        setAddFighterModalVisible={setAddFighterModalVisible}
+      />
     </View>
   );
 };

@@ -15,7 +15,6 @@ import Styles from "../../Style";
 const FighterList = ({ combatObject }) => {
   //used by FlatList in <FighterList />
   const renderFighterListItem = ({ item }) => {
-    console.log("the data is here: ", combatObject.fighters);
     return (
       <ListItem
         item={item}

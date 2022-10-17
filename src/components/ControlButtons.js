@@ -9,6 +9,7 @@ import {
 import Styles from "../../Style";
 
 const ControlButtons = ({
+  onAddFighterPress,
   onSaveCombatPress,
   onLoadCombatPress,
   onMenuPress,
@@ -20,7 +21,7 @@ const ControlButtons = ({
       {/* save, load, add buttons goes here */}
       <TouchableOpacity
         style={[Styles.controlButton, { minWidth: "10%" }]}
-        onPress={() => {}}
+        onPress={onAddFighterPress}
       >
         <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
           Add Fighter
