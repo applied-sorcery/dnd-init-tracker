@@ -28,6 +28,7 @@ const DuringBattleView = ({
     <FighterList
       renderFighterListItem={renderFighterListItem}
       combatObject={combatObject}
+      currentView={"DuringBattle"}
     />
     <View style={Styles.buttonMenu}>
       <TouchableOpacity onPress={onNextPress}>

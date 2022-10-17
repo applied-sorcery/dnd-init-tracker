@@ -11,7 +11,7 @@ import ListItem from "./ListItem.js";
 
 const AddFighterView = ({
   onAddFighterSubmit,
-  newFighterId = () => {},
+  newFighterId,
   addFighterModalVisible,
   setAddFighterModalVisible,
 }) => {

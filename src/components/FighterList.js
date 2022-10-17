@@ -12,15 +12,15 @@ import Styles from "../../Style";
 
 //this is the list of added/ready fighters. it can be populated manually or
 // by loading groups/individuals
-const FighterList = ({ combatObject }) => {
+const FighterList = ({ combatObject, currentView }) => {
   //used by FlatList in <FighterList />
-  const renderFighterListItem = ({ item }) => {
+  const FighterListItem = ({ item }) => {
     return (
       <ListItem
         item={item}
         myTurn={
           combatObject.fighters.indexOf(item) == combatObject.whoseTurn &&
-          combatObject.battlePhase != "preBattle"
+          currentView != "PreBattle"
             ? true
             : false
         }
@@ -32,7 +32,7 @@ const FighterList = ({ combatObject }) => {
     <View style={Styles.listArea}>
       <FlatList
         data={combatObject.fighters}
-        renderItem={renderFighterListItem}
+        renderItem={FighterListItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (
           <Text style={Styles.defaultText}>{"<no mobs yet>"}</Text>

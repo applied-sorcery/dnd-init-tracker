@@ -11,10 +11,8 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import ListItem from "./ListItem.js";
 import PreBattleView from "./PreBattleView.js";
 import DuringBattleView from "./DuringBattleView.js";
-import FighterList from "./FighterList.js";
 import CombatMenu from "./CombatMenu.js";
 import SavedCombatList from "./SavedCombatList.js";
 import NewCombatView from "./NewCombatView.js";
@@ -31,11 +29,10 @@ const CombatView = () => {
     id: 0,
     name: "",
     whoseTurn: 0,
-    battlePhase: "",
     fighters: [],
   });
 
-  const { id, name, round, whoseTurn, battlePhase, fighters } = combatObject;
+  const { id, name, round, whoseTurn, fighters } = combatObject;
 
   const setId = (prop) => {
     setCombatObject({ ...combatObject, id: prop });
@@ -49,9 +46,7 @@ const CombatView = () => {
   const setWhoseTurn = (prop) => {
     setCombatObject({ ...combatObject, whoseTurn: prop });
   };
-  const setBattlePhase = (prop) => {
-    setCombatObject({ ...combatObject, battlePhase: prop });
-  };
+
   const setFighters = (prop) => {
     setCombatObject({ ...combatObject, fighters: prop });
   };
@@ -68,7 +63,6 @@ const CombatView = () => {
         { name: "fighter-2", initScore: 3, id: 2 },
       ],
       round: 0,
-      battlePhase: "preBattle",
       whoseTurn: 0,
     },
   ]);
@@ -98,23 +92,6 @@ const CombatView = () => {
     //checks to see if there even are fighters in the list,
     // and if they all have init scores
     fighters && fighters.every((fighter) => fighter.initScore);
-
-  //used by FlatList in <FighterList />
-  const renderFighterListItem = ({ item }) => (
-    <ListItem
-      item={item}
-      myTurn={
-        fighters.indexOf(item) == whoseTurn && battlePhase != "preBattle"
-          ? true
-          : false
-      }
-    />
-  );
-
-  //used by FlatList in <SavedCombats />
-  const renderCombatListItem = ({ item }) => (
-    <ListItem item={item} onPress={(item) => onConfirmLoadCobmat(item)} />
-  );
 
   //button press handlers
 
@@ -184,6 +161,7 @@ const CombatView = () => {
       setCombatObject({
         ...combatObject,
         round: 1,
+        whoseTurn: 1,
       });
     }
     setCurrentView("DuringBattle");
