@@ -30,6 +30,7 @@ const CombatView = () => {
     name: "",
     whoseTurn: 0,
     fighters: [],
+    round: 0,
   });
 
   const { id, name, round, whoseTurn, fighters } = combatObject;
@@ -161,7 +162,7 @@ const CombatView = () => {
       setCombatObject({
         ...combatObject,
         round: 1,
-        whoseTurn: 1,
+        whoseTurn: 0,
       });
     }
     setCurrentView("DuringBattle");

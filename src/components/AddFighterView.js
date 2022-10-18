@@ -102,7 +102,7 @@ const AddFighterView = ({
               onPress={() => {
                 onAddFighterSubmit({
                   ...newFighter,
-                  id: combatObject.fighters.length,
+                  id: combatObject.fighters.length + 1,
                 });
                 setAddFighterModalVisible(false);
               }}
