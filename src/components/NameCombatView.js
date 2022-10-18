@@ -31,7 +31,7 @@ const NameCombatView = ({
         // alignSelf: "center",
         backgroundColor: "#2f363c",
         borderWidth: 2,
-        borderColor: "red",
+        borderColor: "#aaa",
       }}
     >
       <TextInput
@@ -39,15 +39,14 @@ const NameCombatView = ({
           borderWidth: 2,
           color: "#a5a0a0",
           fontSize: 16,
-          borderColor: "green",
+          margin: 10,
+          borderColor: "#a5a0a0",
+          backgroundColor: "#444",
+          paddingLeft: 10,
         }}
         value={combatName}
         placeholderTextColor={"#fff"}
-        placeholder={
-          combatObject.name
-            ? combatObject.name
-            : "combat" + "-" + combatObject.id
-        }
+        placeholder={"[enter name]"}
         onChangeText={(text) => setCombatName(text)}
         multiline={false}
         theme={{ colors: { primary: "red" } }}
@@ -56,7 +55,7 @@ const NameCombatView = ({
       <View
         style={{
           flex: 1,
-          borderWidth: 2,
+          // borderWidth: 2,
           borderColor: "orange",
           minHeight: 200,
         }}
@@ -70,7 +69,7 @@ const NameCombatView = ({
           <Text style={Styles.defaultText}>Save</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          //   style={[Styles.controlButton, { minHeight: 50 }]}
+          style={[Styles.controlButton, { minHeight: 50 }]}
           onPress={() => setShowNameCombatView(false)}
         >
           <Text style={Styles.defaultText}>Cancel</Text>
