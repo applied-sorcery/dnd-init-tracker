@@ -21,13 +21,13 @@ const NameCombatView = ({
         flex: 1,
 
         top: "15%",
-        left: "25%",
+        left: "12.5%",
         right: 0,
         bottom: 0,
-        maxHeight: "65%",
+        maxHeight: 300,
         minHeight: 200,
-        width: "50%",
-        // justifyContent: "center",
+        width: "75%",
+        justifyContent: "center",
         // alignSelf: "center",
         backgroundColor: "#2f363c",
         borderWidth: 2,
@@ -57,11 +57,11 @@ const NameCombatView = ({
           flex: 1,
           // borderWidth: 2,
           borderColor: "orange",
-          minHeight: 200,
+          maxHeight: 200,
         }}
       >
         <TouchableOpacity
-          style={[Styles.controlButton, { minHeight: 50 }]}
+          style={[Styles.controlButton, { minHeight: 50, maxHeight: 80 }]}
           onPress={() => {
             onConfirmSaveCombat(combatName);
           }}
@@ -69,7 +69,7 @@ const NameCombatView = ({
           <Text style={Styles.defaultText}>Save</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[Styles.controlButton, { minHeight: 50 }]}
+          style={[Styles.controlButton, { minHeight: 50, maxHeight: 80 }]}
           onPress={() => setShowNameCombatView(false)}
         >
           <Text style={Styles.defaultText}>Cancel</Text>

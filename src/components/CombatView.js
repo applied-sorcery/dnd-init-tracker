@@ -76,6 +76,7 @@ const CombatView = () => {
   ]);
 
   //helper functions
+
   const newFighterId = () => {
     return fighters.length + 1;
   };
@@ -157,6 +158,10 @@ const CombatView = () => {
     setCurrentView("CombatMenu");
   };
 
+  const onBackPress = () => {
+    setCurrentView("PreBattle");
+  };
+
   const onStartPress = () => {
     if (round == 0) {
       setCombatObject({
@@ -201,10 +206,13 @@ const CombatView = () => {
     <View style={Styles.container}>
       {currentView !== "CombatMenu" ? (
         <ControlButtons
+          currentView={currentView}
           onAddFighterPress={onAddFighterPress}
           onLoadCombatPress={onLoadCombatPress}
           onSaveCombatPress={onSaveCombatPress}
           onMenuPress={onMenuPress}
+          onBackPress={onBackPress}
+          combatObject={combatObject}
         />
       ) : null}
 
@@ -212,7 +220,7 @@ const CombatView = () => {
         style={{
           flex: 1,
           minHeight: "75%",
-          borderWidth: 5,
+          // borderWidth: 5,
           borderColor: "cornflowerblue",
         }}
       >

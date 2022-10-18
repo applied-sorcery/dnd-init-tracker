@@ -9,43 +9,65 @@ import {
 import Styles from "../../Style";
 
 const ControlButtons = ({
+  currentView,
+  onBackPress,
   onAddFighterPress,
   onSaveCombatPress,
   onLoadCombatPress,
   onMenuPress,
+  combatObject,
 }) => (
   <>
-    <View
-      style={[Styles.controlButtonRow, { borderColor: "red", borderWidth: 2 }]}
-    >
+    <View style={[Styles.controlButtonRow]}>
       {/* save, load, add buttons goes here */}
-      <TouchableOpacity
-        style={[Styles.controlButton, { minWidth: "10%" }]}
-        onPress={onAddFighterPress}
-      >
-        <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-          Add Fighter
-        </Text>
-      </TouchableOpacity>
+      {currentView == "LoadCombat" ? (
+        ""
+      ) : (
+        <TouchableOpacity
+          style={[Styles.controlButton, { minWidth: "10%" }]}
+          onPress={onAddFighterPress}
+        >
+          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+            Add Fighter
+          </Text>
+        </TouchableOpacity>
+      )}
+      {currentView !== "LoadCombat" ? (
+        <TouchableOpacity
+          style={Styles.controlButton}
+          onPress={onSaveCombatPress}
+        >
+          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+            Save Combat
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        ""
+      )}
+      {currentView !== "LoadCombat" ? (
+        <TouchableOpacity
+          style={Styles.controlButton}
+          onPress={onLoadCombatPress}
+        >
+          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+            Load Combat
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        ""
+      )}
       <TouchableOpacity
         style={Styles.controlButton}
-        onPress={onSaveCombatPress}
+        onPress={
+          currentView === "LoadCombat" && combatObject.fighters.length !== 0
+            ? onBackPress
+            : onMenuPress
+        }
       >
         <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-          Save Combat
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={Styles.controlButton}
-        onPress={onLoadCombatPress}
-      >
-        <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-          Load Combat
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={Styles.controlButton} onPress={onMenuPress}>
-        <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-          Menu
+          {currentView === "LoadCombat" && combatObject.fighters.length !== 0
+            ? "Back"
+            : "Menu"}
         </Text>
       </TouchableOpacity>
     </View>
