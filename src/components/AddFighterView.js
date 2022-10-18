@@ -10,6 +10,7 @@ import {
 import ListItem from "./ListItem.js";
 
 const AddFighterView = ({
+  combatObject,
   onAddFighterSubmit,
   newFighterId,
   addFighterModalVisible,
@@ -18,7 +19,7 @@ const AddFighterView = ({
   // Add Fighter
   // const [modalVisible, setModalVisible] = useState(visible);
   const [newFighter, setNewFighter] = useState({
-    id: newFighterId(),
+    id: 0,
     name: "NA",
     initScore: "0",
   });
@@ -99,7 +100,10 @@ const AddFighterView = ({
             <Pressable
               style={styles.button}
               onPress={() => {
-                onAddFighterSubmit(newFighter);
+                onAddFighterSubmit({
+                  ...newFighter,
+                  id: combatObject.fighters.length,
+                });
                 setAddFighterModalVisible(false);
               }}
             >

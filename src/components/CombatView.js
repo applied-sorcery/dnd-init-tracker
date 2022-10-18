@@ -253,6 +253,7 @@ const CombatView = () => {
         )}
       </View>
       <AddFighterView
+        combatObject={combatObject}
         onAddFighterSubmit={handleAddFighterSubmit}
         newFighterId={newFighterId}
         addFighterModalVisible={addFighterModalVisible}
