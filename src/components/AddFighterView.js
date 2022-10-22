@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import {
   Modal,
-  Text,
   TextInput,
+  Text,
   View,
   Pressable,
   StyleSheet,
 } from "react-native";
 import ListItem from "./ListItem.js";
+import {BaseText, Header} from './CustomCore.js';
 
 const AddFighterView = ({
   combatObject,
@@ -39,6 +40,7 @@ const AddFighterView = ({
     text: {
       fontSize: 20,
       marginBottom: 10,
+      color: 'white',
     },
     input: {
       backgroundColor: "#666",
@@ -47,6 +49,7 @@ const AddFighterView = ({
     header: {
       fontSize: 30,
       marginBottom: 30,
+      color: 'white',
     },
     btnWrapper: {
       alignItems: "center",
@@ -78,8 +81,8 @@ const AddFighterView = ({
     >
       <View style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.header}>Create a new fighter</Text>
-          <Text style={styles.text}>Fighter Name:</Text>
+          <Header>Create a new fighter</Header>
+          <BaseText>Fighter Name:</BaseText>
           <TextInput
             style={[styles.text, styles.input]}
             placeholder="Name of player or enemy"
@@ -87,7 +90,7 @@ const AddFighterView = ({
               setNewFighter({ ...newFighter, name: name });
             }}
           />
-          <Text style={styles.text}>Initiative Score:</Text>
+          <BaseText>Initiative Score:</BaseText>
           <TextInput
             style={[styles.text, styles.input]}
             keyboardType="numeric"
