@@ -5,7 +5,7 @@ import {
 } from "react-native";
 
 /* 
-* No default exports in this file. Import components with:
+* No default exports in this file. Import these components in other files with:
 *
 *  import {Component1, Component2} from './CustomCore.js';
 */
