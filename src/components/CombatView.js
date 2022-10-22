@@ -201,6 +201,16 @@ const CombatView = () => {
     setCurrentView("PreBattle");
   };
 
+  const onClearPress = () => {
+    setCombatObject({
+      id: 0,
+      name: "",
+      whoseTurn: 0,
+      fighters: [],
+      round: 0,
+    });
+  };
+
   return (
     //this is view returned by the combatView component.
     //different sub view components are rendered based on state.
@@ -215,6 +225,7 @@ const CombatView = () => {
           onMenuPress={onMenuPress}
           onBackPress={onBackPress}
           combatObject={combatObject}
+          onClearPress={onClearPress}
         />
       ) : null}
 
@@ -230,6 +241,7 @@ const CombatView = () => {
           <CombatMenu
             onNewCombatPress={onNewCombatPress}
             onLoadCombatPress={onLoadCombatPress}
+            setCurrentView={setCurrentView}
           />
         ) : currentView == "NewCombat" ? (
           <NewCombatView onMenuPress={onMenuPress} />

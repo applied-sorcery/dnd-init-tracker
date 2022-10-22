@@ -9,6 +9,7 @@ import {
 import Styles from "../../Style";
 
 const ControlButtons = ({
+  onClearPress,
   currentView,
   onBackPress,
   onAddFighterPress,
@@ -20,6 +21,18 @@ const ControlButtons = ({
   <>
     <View style={[Styles.controlButtonRow]}>
       {/* save, load, add buttons goes here */}
+      {currentView == "DuringBattle" || currentView == "PreBattle" ? (
+        <TouchableOpacity
+          style={[Styles.controlButton, { minWidth: "10%" }]}
+          onPress={onClearPress}
+        >
+          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
+            Clear
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        ""
+      )}
       {currentView == "LoadCombat" ? (
         ""
       ) : (
