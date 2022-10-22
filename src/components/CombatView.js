@@ -98,7 +98,9 @@ const CombatView = () => {
   //button press handlers
 
   const handleAddFighterSubmit = (newFighter) => {
-    setFighters([...fighters, newFighter]);
+    setFighters(
+      [...fighters, newFighter].sort((a, b) => b.initScore - a.initScore)
+    );
     setCurrentView("PreBattle");
   };
 
