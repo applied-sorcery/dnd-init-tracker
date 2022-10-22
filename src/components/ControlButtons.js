@@ -57,7 +57,7 @@ const ControlButtons = ({
       ) : (
         ""
       )}
-      {currentView !== "LoadCombat" ? (
+      {currentView !== "LoadCombat" && currentView !== "NewCombat" ? (
         <TouchableOpacity
           style={Styles.controlButton}
           onPress={onLoadCombatPress}
