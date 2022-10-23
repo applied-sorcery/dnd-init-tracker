@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import {
   Modal,
-  TextInput,
-  Text,
   View,
-  Pressable,
   StyleSheet,
 } from "react-native";
 import ListItem from "./ListItem.js";
-import {BaseText, Header} from './CustomCore.js';
+import {AppText, Header, AppButton, AppTextInput} from './CustomCore.js';
 
 const AddFighterView = ({
   combatObject,
@@ -18,14 +15,11 @@ const AddFighterView = ({
   setAddFighterModalVisible,
 }) => {
   // Add Fighter
-  // const [modalVisible, setModalVisible] = useState(visible);
   const [newFighter, setNewFighter] = useState({
     id: 0,
     name: "NA",
     initScore: "0",
   });
-
-  // const setAddFighterModalVisible = {};
 
   const styles = StyleSheet.create({
     container: {
@@ -37,37 +31,15 @@ const AddFighterView = ({
       marginHorizontal: 25,
       marginVertical: 50,
     },
-    text: {
-      fontSize: 20,
-      marginBottom: 10,
-      color: 'white',
-    },
+    /*
     input: {
       backgroundColor: "#666",
       marginBottom: 30,
     },
-    header: {
-      fontSize: 30,
-      marginBottom: 30,
-      color: 'white',
-    },
+    */
     btnWrapper: {
       alignItems: "center",
       marginTop: 30,
-    },
-    button: {
-      alignItems: "center",
-      width: "75%",
-      backgroundColor: "#3399ff",
-      marginBottom: 20,
-      paddingVertical: 10,
-      borderRadius: 2,
-    },
-    btnText: {
-      fontSize: 15,
-      textTransform: "uppercase",
-      color: "white",
-      fontWeight: "500",
     },
   });
 
@@ -82,17 +54,15 @@ const AddFighterView = ({
       <View style={styles.container}>
         <View style={styles.content}>
           <Header>Create a new fighter</Header>
-          <BaseText>Fighter Name:</BaseText>
-          <TextInput
-            style={[styles.text, styles.input]}
+          <AppText>Fighter Name:</AppText>
+          <AppTextInput
             placeholder="Name of player or enemy"
             onChangeText={(name) => {
               setNewFighter({ ...newFighter, name: name });
             }}
           />
-          <BaseText>Initiative Score:</BaseText>
-          <TextInput
-            style={[styles.text, styles.input]}
+          <AppText>Initiative Score:</AppText>
+          <AppTextInput
             keyboardType="numeric"
             placeholder="0"
             onChangeText={(initScore) => {
@@ -100,8 +70,7 @@ const AddFighterView = ({
             }}
           />
           <View style={styles.btnWrapper}>
-            <Pressable
-              style={styles.button}
+            <AppButton
               onPress={() => {
                 onAddFighterSubmit({
                   ...newFighter,
@@ -109,17 +78,14 @@ const AddFighterView = ({
                 });
                 setAddFighterModalVisible(false);
               }}
-            >
-              <Text style={styles.btnText}>Submit</Text>
-            </Pressable>
-            <Pressable
-              style={styles.button}
+            >Submit
+            </AppButton>
+            <AppButton
               onPress={() => setAddFighterModalVisible(false)}
-            >
-              <Text style={styles.btnText}>Cancel</Text>
-            </Pressable>
+            >Cancel
+            </AppButton>
           </View>
-          {/* Monitor values for input and submit
+            {/* Monitor values for input and submit
             <Text style={{fontSize:30}}>Input: {newFighter['name']}</Text>
             <Text style={{fontSize:30}}>Submit: {
               fighters.length > 0 && fighters[fighters.length - 1]['name']
@@ -129,6 +95,6 @@ const AddFighterView = ({
       </View>
     </Modal>
   );
-}; // Add Fighter
+} // Add Fighter
 
 export default AddFighterView;
