@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: "white",
     fontWeight: "500",
+    marginBottom: 0,
   },
   header: {
     fontSize: 30,
