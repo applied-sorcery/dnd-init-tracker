@@ -12,6 +12,7 @@ const CombatMenu = ({
   onNewCombatPress,
   onLoadCombatPress,
   setCurrentView,
+  fighters,
 }) => (
   <View style={Styles.combatMenu}>
     <View style={Styles.someButtonsColumn}>
@@ -27,14 +28,18 @@ const CombatMenu = ({
       >
         <Text style={Styles.defaultText}>LOAD COMBAT</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
-        onPress={() => {
-          setCurrentView("PreBattle");
-        }}
-      >
-        <Text style={Styles.defaultText}>RESUME</Text>
-      </TouchableOpacity>
+      {fighters?.length ? (
+        <TouchableOpacity
+          style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
+          onPress={() => {
+            setCurrentView("PreBattle");
+          }}
+        >
+          <Text style={Styles.defaultText}>RESUME</Text>
+        </TouchableOpacity>
+      ) : (
+        ""
+      )}
     </View>
     <Text style={Styles.defaultText}>Recent Combats:</Text>
   </View>
