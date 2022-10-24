@@ -18,7 +18,7 @@ const Styles = StyleSheet.create({
   container: {
     backgroundColor: "#2f363c",
     minHeight: '100%',
-    marginTop: 10,
+    paddingTop: 10,
   },
   safeArea: {
     height: 30,

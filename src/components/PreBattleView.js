@@ -23,7 +23,6 @@ const PreBattleView = ({
     {
       <View
         style={[
-          Styles.container,
           { flex: 1, borderWidth: 0, borderColor: "red" },
         ]}
       >
