@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Styles from "../../Style";
+import {CtrlBtn} from './CustomCore.js';
 
 const ControlButtons = ({
   onClearPress,
@@ -22,6 +23,7 @@ const ControlButtons = ({
     <View style={[Styles.controlButtonRow]}>
       {/* save, load, add buttons goes here */}
       {currentView == "DuringBattle" || currentView == "PreBattle" ? (
+        // Change to CtrlBtn
         <TouchableOpacity
           style={[Styles.controlButton, { minWidth: "10%" }]}
           onPress={onClearPress}
@@ -36,16 +38,14 @@ const ControlButtons = ({
       {currentView == "LoadCombat" ? (
         ""
       ) : (
-        <TouchableOpacity
-          style={[Styles.controlButton, { minWidth: "10%" }]}
+        <CtrlBtn
           onPress={onAddFighterPress}
         >
-          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-            Add Fighter
-          </Text>
-        </TouchableOpacity>
+          Add Fighter
+        </CtrlBtn>
       )}
       {currentView !== "LoadCombat" ? (
+        // Change to CtrlBtn
         <TouchableOpacity
           style={Styles.controlButton}
           onPress={onSaveCombatPress}
@@ -58,6 +58,7 @@ const ControlButtons = ({
         ""
       )}
       {currentView !== "LoadCombat" && currentView !== "NewCombat" ? (
+        // Change to CtrlBtn
         <TouchableOpacity
           style={Styles.controlButton}
           onPress={onLoadCombatPress}
@@ -69,6 +70,7 @@ const ControlButtons = ({
       ) : (
         ""
       )}
+      {/* Change to CtrlBtn */}
       <TouchableOpacity
         style={Styles.controlButton}
         onPress={
