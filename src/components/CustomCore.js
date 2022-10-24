@@ -9,6 +9,10 @@ import {
 } from "react-native";
 
 
+/* Small reusable components
+*
+* All of these components are meant to be reused in more than one context. As a rule of thumb, only give components a bottom margin (if flow goes from top to bottom) or a right margin (if flow is left to right). React native does not collapse margins, so they will double up if you put them on all four sides. Consider using the marginStart property if reverse flow is a concern. If you think something needs a top or left margin, consider adding that margin to the adjacent container. */
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
@@ -50,7 +54,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    margin: 5,
+    //margin: 5,
+    marginRight: 10,
     padding: 5,
     borderWidth: 2,
     borderColor: "darkgray",
@@ -68,9 +73,11 @@ const styles = StyleSheet.create({
 
 export const AppText = (props) => {
   return (
-    <Text style={[
-      styles.text,
-      props.style
+    <Text 
+      {...props}
+      style={[
+        styles.text,
+        props.style
     ]}>   
       {props.children}
     </Text>
@@ -79,11 +86,13 @@ export const AppText = (props) => {
     
 export const Header = (props) => {
   return (
-    <Text style={[
-      styles.text,
-      styles.header,
-      props.style
-    ]}>   
+    <Text 
+      {...props}
+      style={[
+        styles.text,
+        styles.header,
+        props.style
+      ]}>   
       {props.children}
     </Text>
   );
@@ -112,10 +121,8 @@ export const AppButton = (props) => {
 export const AppTextInput = (props) => {
   return (
     <TextInput
+      {...props}
       style={[styles.text, styles.textInput]}
-      keyboardType={props.keyboardType}
-      placeholder={props.placeholder}
-      onChangeText={props.onChangeText}
     />
   );
 }

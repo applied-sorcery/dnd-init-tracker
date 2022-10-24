@@ -14,12 +14,11 @@ const Styles = StyleSheet.create({
     borderColor: "#a5a0a0",
     borderWidth: 1,
   },
-
+  /* Wrapper for the entire screen */
   container: {
     backgroundColor: "#2f363c",
-    flex: 1,
-    // borderColor: 'red',
-    // borderWidth: 3,
+    minHeight: '100%',
+    marginTop: 10,
   },
   safeArea: {
     height: 30,
@@ -63,7 +62,8 @@ const Styles = StyleSheet.create({
     alignContent: "center",
     height: "12%",
     maxWidt: "10%",
-    margin: 0,
+    marginLeft: 10,
+    marginBottom: 10,
     padding: 0,
     // borderColor: "purple",
     // borderWidth: 2,

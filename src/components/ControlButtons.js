@@ -22,7 +22,6 @@ const ControlButtons = ({
   <>
     <View style={[Styles.controlButtonRow]}>
       {currentView == "DuringBattle" || currentView == "PreBattle" ? (
-        // Change to CtrlBtn
         <CtrlBtn onPress={onClearPress}>Clear</CtrlBtn>
       ) : (
         ""
