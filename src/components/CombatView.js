@@ -242,6 +242,7 @@ const CombatView = () => {
             onNewCombatPress={onNewCombatPress}
             onLoadCombatPress={onLoadCombatPress}
             setCurrentView={setCurrentView}
+            fighters={fighters}
           />
         ) : currentView == "NewCombat" ? (
           <NewCombatView onMenuPress={onMenuPress} />
