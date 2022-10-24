@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Styles from "../../Style";
-import {CtrlBtn} from './CustomCore.js';
+import { CtrlBtn } from "./CustomCore.js";
 
 const ControlButtons = ({
   onClearPress,
@@ -21,70 +21,38 @@ const ControlButtons = ({
 }) => (
   <>
     <View style={[Styles.controlButtonRow]}>
-      {/* save, load, add buttons goes here */}
       {currentView == "DuringBattle" || currentView == "PreBattle" ? (
         // Change to CtrlBtn
-        <TouchableOpacity
-          style={[Styles.controlButton, { minWidth: "10%" }]}
-          onPress={onClearPress}
-        >
-          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-            Clear
-          </Text>
-        </TouchableOpacity>
+        <CtrlBtn onPress={onClearPress}>Clear</CtrlBtn>
       ) : (
         ""
       )}
       {currentView == "LoadCombat" ? (
         ""
       ) : (
-        <CtrlBtn
-          onPress={onAddFighterPress}
-        >
-          Add Fighter
-        </CtrlBtn>
+        <CtrlBtn onPress={onAddFighterPress}>Add Fighter</CtrlBtn>
       )}
       {currentView !== "LoadCombat" ? (
-        // Change to CtrlBtn
-        <TouchableOpacity
-          style={Styles.controlButton}
-          onPress={onSaveCombatPress}
-        >
-          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-            Save Combat
-          </Text>
-        </TouchableOpacity>
+        <CtrlBtn onPress={onSaveCombatPress}>Save Combat</CtrlBtn>
       ) : (
         ""
       )}
       {currentView !== "LoadCombat" && currentView !== "NewCombat" ? (
-        // Change to CtrlBtn
-        <TouchableOpacity
-          style={Styles.controlButton}
-          onPress={onLoadCombatPress}
-        >
-          <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-            Load Combat
-          </Text>
-        </TouchableOpacity>
+        <CtrlBtn onPress={onLoadCombatPress}>Load Combat</CtrlBtn>
       ) : (
         ""
       )}
-      {/* Change to CtrlBtn */}
-      <TouchableOpacity
-        style={Styles.controlButton}
+      <CtrlBtn
         onPress={
           currentView === "LoadCombat" && combatObject.fighters.length !== 0
             ? onBackPress
             : onMenuPress
         }
       >
-        <Text style={[Styles.defaultText, { fontSize: 16, margin: 0 }]}>
-          {currentView === "LoadCombat" && combatObject.fighters.length !== 0
-            ? "Back"
-            : "Menu"}
-        </Text>
-      </TouchableOpacity>
+        {currentView === "LoadCombat" && combatObject.fighters.length !== 0
+          ? "Back"
+          : "Menu"}
+      </CtrlBtn>
     </View>
   </>
 );
