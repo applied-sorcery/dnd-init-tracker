@@ -8,7 +8,7 @@ import {
   Modal,
 } from "react-native";
 import Styles from "../../Style";
-import {AppButton} from "./CustomCore.js"
+import {AppButton, Confirm} from "./CustomCore.js"
 
 const NameCombatView = ({
   combatObject,
@@ -18,10 +18,42 @@ const NameCombatView = ({
 }) => {
   const [combatName, setCombatName] = useState(combatObject.name);
   return (
+    <Confirm
+      visible={showNameCombatView}
+      onRequestClose={() => {
+        setShowNameCombatView(false);
+      }}
+      onConfirm={() => {
+        onConfirmSaveCombat(combatName);
+      }}
+      confirmText="Save"
+    >
+    </Confirm>
+  ); //return
+
+      
+  /*
     <Modal
       visible={showNameCombatView}
-    ></Modal>
+      onRequestClose={() => {
+        setShowNameCombatView(false);
+      }}
+    >
+      <View
+        style={{backgroundColor: "black", height: "100%"}}
+      >
+        <AppButton
+          onPress={() => {
+            onConfirmSaveCombat(combatName);
+          }}
+        >Save</AppButton>
+        <AppButton
+          onPress={() => setShowNameCombatView(false)}
+        >Cancel</AppButton>
+      </View>
+    </Modal>
   ); //return
+  */
   /*
   return (
     <View

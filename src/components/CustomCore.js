@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  View,
 } from "react-native";
 
 
@@ -62,6 +63,20 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     minWidth: '10%',
   },
+  confirmWrapper: {
+  // top padding or margin crashes app
+    height: "100%",
+    backgroundColor: "black",
+  },
+  confirmContent: {
+    marginHorizontal: 25,
+    marginVertical: 50,
+  },
+  confirmBtnWrapper: {
+    alignItems: "center",
+    marginTop: 30,
+  },
+
 });
 
 
@@ -147,3 +162,35 @@ export const CtrlBtn = (props) => {
   );
 }
 
+export const Confirm = (props) => {
+  return (
+    <Modal
+      visible={props.visible}
+      onRequestClose={props.onRequestClose}
+    >
+      <View
+        style={[
+          styles.confirmWrapper,
+        ]}
+      >
+        <View
+          styles={[
+            styles.confirmContent,
+          ]}
+        >
+          <View style={styles.confirmBtnWrapper}>
+
+            <AppButton
+              onPress={props.onConfirm}
+            >{props.confirmText}</AppButton>
+            <AppButton
+              onPress={props.onRequestClose}
+            >Cancel</AppButton>
+            {props.children}
+
+          {/*confirmBtnWrapper*/}</View>
+        {/*confirmContent*/}</View>
+      {/*confirmWrapper*/}</View>
+    </Modal>
+  ); //return
+}

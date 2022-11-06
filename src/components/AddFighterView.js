@@ -22,11 +22,13 @@ const AddFighterView = ({
   });
 
   const styles = StyleSheet.create({
+    /*
     container: {
       // top padding or margin crashes app
       height: "100%",
       backgroundColor: "black",
     },
+    */
     content: {
       marginHorizontal: 25,
       marginVertical: 50,
