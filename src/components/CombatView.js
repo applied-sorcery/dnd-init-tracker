@@ -145,6 +145,7 @@ const CombatView = () => {
   };
 
   //TODO: Move onConfirmSaveCombat to NameCombatView.js
+  // The button exists in NameCombatView, so should the function
   const onConfirmSaveCombat = (combatName) => {
     setSavedCombats([
       ...savedCombats,
