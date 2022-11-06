@@ -8,27 +8,21 @@ import {
   Modal,
 } from "react-native";
 import Styles from "../../Style";
-import {
-  AppButton,
-  Confirm,
-  AppTextInput,
-  Header,
-} from "./CustomCore.js"
+import { AppButton, Confirm, AppTextInput, Header } from "./CustomCore.js";
 
-const NameCombatView = ({
+const SaveCombatView = ({
   combatObject,
-  showNameCombatView,
-  setShowNameCombatView,
+  showSaveCombatView,
+  setShowSaveCombatView,
   onConfirmSaveCombat,
 }) => {
-
   const [combatName, setCombatName] = useState(combatObject.name);
 
   return (
     <Confirm
-      visible={showNameCombatView}
+      visible={showSaveCombatView}
       onRequestClose={() => {
-        setShowNameCombatView(false);
+        setShowSaveCombatView(false);
       }}
       onConfirm={() => {
         onConfirmSaveCombat(combatName);
@@ -37,11 +31,11 @@ const NameCombatView = ({
     >
       <Header>Save Combat</Header>
       <AppTextInput
+        placeholder={"enter combat name"}
         onChangeText={(text) => setCombatName(text)}
       />
     </Confirm>
   ); //return
+}; //SaveCombatView
 
-}; //NameCombatView
-
-export default NameCombatView;
+export default SaveCombatView;

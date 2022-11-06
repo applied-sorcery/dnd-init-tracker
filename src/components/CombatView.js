@@ -16,7 +16,7 @@ import DuringBattleView from "./DuringBattleView.js";
 import CombatMenu from "./CombatMenu.js";
 import SavedCombatList from "./SavedCombatList.js";
 import NewCombatView from "./NewCombatView.js";
-import NameCombatView from "./NameCombatView.js";
+import SaveCombatView from "./SaveCombatView.js";
 import ControlButtons from "./ControlButtons.js";
 import Styles from "../../Style";
 import AddFighterView from "./AddFighterView.js";
@@ -53,7 +53,7 @@ const CombatView = () => {
   };
   // const [showCombatMenu, setShowCombatMenu] = useState(true);
   const [showNewCombatView, setShowNewCombatView] = useState(false);
-  const [showNameCombatView, setShowNameCombatView] = useState(false);
+  const [showSaveCombatView, setShowSaveCombatView] = useState(false);
   const [addFighterModalVisible, setAddFighterModalVisible] = useState(false);
   const [savedCombats, setSavedCombats] = useState([
     {
@@ -141,7 +141,7 @@ const CombatView = () => {
   const onLoadFighterPress = () => {};
 
   const onSaveCombatPress = () => {
-    setShowNameCombatView(true);
+    setShowSaveCombatView(true);
   };
 
   const onConfirmSaveCombat = (combatName) => {
@@ -153,7 +153,7 @@ const CombatView = () => {
         id: savedCombats.length + 1,
       },
     ]);
-    setShowNameCombatView(false);
+    setShowSaveCombatView(false);
   };
 
   const onMenuPress = () => {
@@ -264,15 +264,15 @@ const CombatView = () => {
             onResetPress={onResetPress}
           />
         ) : null}
-        {showNameCombatView && (
-          <NameCombatView
+        {showSaveCombatView && (
+          <SaveCombatView
             combatObject={combatObject}
             onChangeCombatName={(text) =>
               setCombatObject({ ...combatObject, name: text })
             }
             name={name}
-            showNameCombatView={showNameCombatView}
-            setShowNameCombatView={(value) => setShowNameCombatView(value)}
+            showSaveCombatView={showSaveCombatView}
+            setShowSaveCombatView={(value) => setShowSaveCombatView(value)}
             onConfirmSaveCombat={onConfirmSaveCombat}
           />
         )}
