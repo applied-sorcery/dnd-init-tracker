@@ -169,15 +169,15 @@ export const Confirm = (props) => {
       onRequestClose={props.onRequestClose}
     >
       <View
-        style={[
-          styles.confirmWrapper,
-        ]}
+        style={styles.confirmWrapper}
       >
         <View
-          styles={[
-            styles.confirmContent,
-          ]}
+          style={styles.confirmContent}
         >
+          {/* Modal Content */}
+          {props.children}
+
+          {/* Buttons */}
           <View style={styles.confirmBtnWrapper}>
 
             <AppButton
@@ -186,7 +186,6 @@ export const Confirm = (props) => {
             <AppButton
               onPress={props.onRequestClose}
             >Cancel</AppButton>
-            {props.children}
 
           {/*confirmBtnWrapper*/}</View>
         {/*confirmContent*/}</View>
