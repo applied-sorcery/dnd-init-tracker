@@ -5,15 +5,24 @@ import {
   TextInput,
   FlatList,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 import Styles from "../../Style";
+import {AppButton} from "./CustomCore.js"
 
 const NameCombatView = ({
   combatObject,
+  showNameCombatView,
   setShowNameCombatView,
   onConfirmSaveCombat,
 }) => {
   const [combatName, setCombatName] = useState(combatObject.name);
+  return (
+    <Modal
+      visible={showNameCombatView}
+    ></Modal>
+  ); //return
+  /*
   return (
     <View
       style={{
@@ -60,23 +69,18 @@ const NameCombatView = ({
           maxHeight: 200,
         }}
       >
-        <TouchableOpacity
-          style={[Styles.controlButton, { minHeight: 50, maxHeight: 80 }]}
+        <AppButton
           onPress={() => {
             onConfirmSaveCombat(combatName);
           }}
-        >
-          <Text style={Styles.defaultText}>Save</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[Styles.controlButton, { minHeight: 50, maxHeight: 80 }]}
+        >Save</AppButton>
+        <AppButton
           onPress={() => setShowNameCombatView(false)}
-        >
-          <Text style={Styles.defaultText}>Cancel</Text>
-        </TouchableOpacity>
+        >Cancel</AppButton>
       </View>
     </View>
-  );
+  ); //return
+  */
 };
 
 export default NameCombatView;

@@ -144,6 +144,7 @@ const CombatView = () => {
     setShowNameCombatView(true);
   };
 
+  //TODO: Move onConfirmSaveCombat to NameCombatView.js
   const onConfirmSaveCombat = (combatName) => {
     setSavedCombats([
       ...savedCombats,
@@ -271,6 +272,7 @@ const CombatView = () => {
               setCombatObject({ ...combatObject, name: text })
             }
             name={name}
+            showNameCombatView={showNameCombatView}
             setShowNameCombatView={(value) => setShowNameCombatView(value)}
             onConfirmSaveCombat={onConfirmSaveCombat}
           />
