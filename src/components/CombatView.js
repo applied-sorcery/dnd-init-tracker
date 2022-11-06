@@ -111,6 +111,13 @@ const CombatView = () => {
 
   const onNewCombatPress = () => {
     setCurrentView("NewCombat");
+    setCombatObject({
+      id: 0,
+      name: "",
+      whoseTurn: 0,
+      fighters: [],
+      round: 0,
+    });
   };
 
   const onNewFighterPress = () => {};
