@@ -20,25 +20,32 @@ const AddFighterView = ({
   setAddFighterModalVisible,
 }) => {
 
-  const [newFighter, setNewFighter] = useState({
+  const emptyFighter = {
     id: 0,
     name: "NA",
     initScore: "0",
-  });
+  }
+
+  const [newFighter, setNewFighter] = useState(emptyFighter);
+
+  const closeAddFighter = () => {
+    setAddFighterModalVisible(false);
+    setNewFighter(emptyFighter);
+  }
 
   return (
     <Confirm
       visible={addFighterModalVisible}
       confirmText="Add"
       onRequestClose={() => {
-        setAddFighterModalVisible(false);
+        closeAddFighter();
       }}
       onConfirm={() => {
         onAddFighterSubmit({
           ...newFighter,
           id: newFighterId(),
         });
-        setAddFighterModalVisible(false);
+        closeAddFighter();
       }}
     >
       
