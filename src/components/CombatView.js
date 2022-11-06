@@ -78,7 +78,7 @@ const CombatView = () => {
   //helper functions
 
   const newFighterId = () => {
-    return fighters.length + 1;
+    return combatObject.fighters.length + 1;
   };
 
   const isNewCombat = () => {
@@ -144,8 +144,6 @@ const CombatView = () => {
     setShowNameCombatView(true);
   };
 
-  //TODO: Move onConfirmSaveCombat to NameCombatView.js
-  // The button exists in NameCombatView, so should the function
   const onConfirmSaveCombat = (combatName) => {
     setSavedCombats([
       ...savedCombats,

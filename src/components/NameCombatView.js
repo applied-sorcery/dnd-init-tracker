@@ -21,7 +21,9 @@ const NameCombatView = ({
   setShowNameCombatView,
   onConfirmSaveCombat,
 }) => {
+
   const [combatName, setCombatName] = useState(combatObject.name);
+
   return (
     <Confirm
       visible={showNameCombatView}

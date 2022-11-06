@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+
 import {
   Modal,
   View,
-  StyleSheet,
 } from "react-native";
-import ListItem from "./ListItem.js";
+
 import {
   AppText,
   Header,
@@ -14,19 +14,16 @@ import {
 } from './CustomCore.js';
 
 const AddFighterView = ({
-  combatObject,
   onAddFighterSubmit,
   newFighterId,
   addFighterModalVisible,
   setAddFighterModalVisible,
 }) => {
+
   const [newFighter, setNewFighter] = useState({
     id: 0,
     name: "NA",
     initScore: "0",
-  });
-
-  const styles = StyleSheet.create({
   });
 
   return (
@@ -39,7 +36,7 @@ const AddFighterView = ({
       onConfirm={() => {
         onAddFighterSubmit({
           ...newFighter,
-          id: combatObject.fighters.length + 1,
+          id: newFighterId(),
         });
         setAddFighterModalVisible(false);
       }}
