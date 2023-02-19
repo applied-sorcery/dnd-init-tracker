@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Styles from "../../Style";
 
-const CombatMenu = ({
+const MainMenu = ({
   onNewCombatPress,
   onLoadCombatPress,
   setCurrentView,
@@ -45,4 +45,4 @@ const CombatMenu = ({
   </View>
 );
 
-export default CombatMenu;
+export default MainMenu;

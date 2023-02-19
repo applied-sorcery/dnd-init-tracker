@@ -26,11 +26,7 @@ const ControlButtons = ({
       ) : (
         ""
       )}
-      {currentView == "LoadCombat" ? (
-        ""
-      ) : (
-        <CtrlBtn onPress={onAddFighterPress}>Add Fighter</CtrlBtn>
-      )}
+
       {currentView !== "LoadCombat" ? (
         <CtrlBtn onPress={onSaveCombatPress}>Save Combat</CtrlBtn>
       ) : (

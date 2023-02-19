@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import PreBattleView from "./PreBattleView.js";
 import DuringBattleView from "./DuringBattleView.js";
-import CombatMenu from "./CombatMenu.js";
+import MainMenu from "./MainMenu.js";
 import SavedCombatList from "./SavedCombatList.js";
 import NewCombatView from "./NewCombatView.js";
 import SaveCombatView from "./SaveCombatView.js";
@@ -24,7 +24,7 @@ import AddFighterView from "./AddFighterView.js";
 const baseUrl = "http://dnd5eapi.co";
 
 const CombatView = () => {
-  const [currentView, setCurrentView] = useState("CombatMenu");
+  const [currentView, setCurrentView] = useState("MainMenu");
   const [combatObject, setCombatObject] = useState({
     id: 0,
     name: "",
@@ -164,7 +164,7 @@ const CombatView = () => {
   };
 
   const onMenuPress = () => {
-    setCurrentView("CombatMenu");
+    setCurrentView("MainMenu");
   };
 
   const onBackPress = () => {
@@ -223,7 +223,7 @@ const CombatView = () => {
     //different sub view components are rendered based on state.
 
     <View style={Styles.container}>
-      {currentView !== "CombatMenu" ? (
+      {currentView !== "MainMenu" ? (
         <ControlButtons
           currentView={currentView}
           onAddFighterPress={onAddFighterPress}
@@ -244,8 +244,8 @@ const CombatView = () => {
           borderColor: "cornflowerblue",
         }}
       >
-        {currentView == "CombatMenu" ? (
-          <CombatMenu
+        {currentView == "MainMenu" ? (
+          <MainMenu
             onNewCombatPress={onNewCombatPress}
             onLoadCombatPress={onLoadCombatPress}
             setCurrentView={setCurrentView}
