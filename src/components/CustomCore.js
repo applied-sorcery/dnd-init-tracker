@@ -133,6 +133,17 @@ export const AppButton = (props) => {
   );
 }
 
+// Button to add new elements (like fighters)
+export const PlusButton = (props) => {
+   return (
+      <AppButton style={[
+         styles.plusBtn,
+         props.style
+      }]>
+      </AppButton>
+   };
+}
+
 export const AppTextInput = (props) => {
   return (
     <TextInput
