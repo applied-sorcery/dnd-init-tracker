@@ -19,10 +19,8 @@ const FighterList = ({ combatObject, currentView }) => {
       <ListItem
         item={item}
         myTurn={
-          combatObject.fighters.indexOf(item) == combatObject.whoseTurn &&
+          combatObject.fighters.indexOf(item) === combatObject.whoseTurn &&
           currentView != "PreBattle"
-            ? true
-            : false
         }
       />
     );
