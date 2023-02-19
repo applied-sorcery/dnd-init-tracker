@@ -12,21 +12,16 @@ import { CtrlBtn } from "./CustomCore.js";
 const ControlButtons = ({
   onClearPress,
   currentView,
-  onBackPress,
-  onAddFighterPress,
   onSaveCombatPress,
   onLoadCombatPress,
-  onMenuPress,
-  combatObject,
 }) => (
   <>
     <View style={[Styles.controlButtonRow]}>
-      {currentView == "DuringBattle" || currentView == "PreBattle" ? (
+      {currentView === "DuringBattle" || currentView === "PreBattle" ? (
         <CtrlBtn onPress={onClearPress}>Clear</CtrlBtn>
       ) : (
         ""
       )}
-
       {currentView !== "LoadCombat" ? (
         <CtrlBtn onPress={onSaveCombatPress}>Save Combat</CtrlBtn>
       ) : (
@@ -37,17 +32,6 @@ const ControlButtons = ({
       ) : (
         ""
       )}
-      <CtrlBtn
-        onPress={
-          currentView === "LoadCombat" && combatObject.fighters.length !== 0
-            ? onBackPress
-            : onMenuPress
-        }
-      >
-        {currentView === "LoadCombat" && combatObject.fighters.length !== 0
-          ? "Back"
-          : "Menu"}
-      </CtrlBtn>
     </View>
   </>
 );
