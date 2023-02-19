@@ -7,12 +7,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import {
+  PlusButton,
+  AppButton,
+} from './CustomCore.js';
+
 import ListItem from "./ListItem";
 import Styles from "../../Style";
 
 //this is the list of added/ready fighters. it can be populated manually or
 // by loading groups/individuals
-const FighterList = ({ combatObject, currentView }) => {
+const FighterList = ({ combatObject, currentView, onAddFighterPress }) => {
   //used by FlatList in <FighterList />
   const FighterListItem = ({ item }) => {
     return (
@@ -37,8 +42,17 @@ const FighterList = ({ combatObject, currentView }) => {
         )}
         keyboardShouldPersistTaps="always"
       />
+
+      <View style={{alignItems: "center"}}>
+        <PlusButton
+          onPress={onAddFighterPress}>
+        </PlusButton>
+      </View>
+
     </View>
+
   );
-};
+
+}; // FighterList
 
 export default FighterList;
