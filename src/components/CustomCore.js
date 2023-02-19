@@ -43,13 +43,19 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     color: 'white',
   },
-  button: {
+  appBtn: {
     alignItems: "center",
+    justifyContent: "center",
     width: "75%",
     backgroundColor: "#3399ff",
     marginBottom: 20,
     paddingVertical: 10,
     borderRadius: 2,
+  },
+  plusBtn: {
+    borderRadius: 8,
+    width: 50,
+    height: 50,
   },
   ctrlBtn: {
     flex: 1,
@@ -113,13 +119,15 @@ export const Header = (props) => {
   );
 }
  
-/* Button text goes inside <AppButton></AppButton> */
+/** A plain button to be used anywhere
+ * @prop children - Text to display on the button
+ */
 export const AppButton = (props) => {
   return (
     <Pressable 
       onPress={props.onPress}
       style={[
-        styles.button,
+        styles.appBtn,
         props.style
     ]}>
       <Text
@@ -135,13 +143,16 @@ export const AppButton = (props) => {
 
 // Button to add new elements (like fighters)
 export const PlusButton = (props) => {
-   return (
-      <AppButton style={[
-         styles.plusBtn,
-         props.style
-      }]>
-      </AppButton>
-   };
+  return (
+    <AppButton
+      onPress={props.onPress}
+      style={[
+        styles.plusBtn,
+        props.style
+      ]}>
+      +
+    </AppButton>
+  );
 }
 
 export const AppTextInput = (props) => {
@@ -173,6 +184,10 @@ export const CtrlBtn = (props) => {
   );
 }
 
+/** A modal with confirm and cancel buttons
+ * @prop {string} confirmText - Text to display on the confirm button 
+ * @prop children - Content to display above confirm/cancel buttons
+ */
 export const Confirm = (props) => {
   return (
     <Modal
