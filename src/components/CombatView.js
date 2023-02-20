@@ -262,6 +262,7 @@ const CombatView = () => {
           <PreBattleView
             combatObject={combatObject}
             onStartPress={onStartPress}
+            onAddFighterPress={onAddFighterPress}
           />
         ) : currentView == "DuringBattle" ? (
           <DuringBattleView
@@ -269,6 +270,7 @@ const CombatView = () => {
             combatObject={combatObject}
             onNextPress={onNextPress}
             onResetPress={onResetPress}
+            onAddFighterPress={onAddFighterPress}
           />
         ) : null}
         {showSaveCombatView && (

@@ -18,6 +18,7 @@ const PreBattleView = ({
   renderFighterListItem,
   combatObject,
   onStartPress,
+  onAddFighterPress,
 }) => (
   <>
     {
@@ -32,6 +33,7 @@ const PreBattleView = ({
           renderFighterListItem={renderFighterListItem}
           combatObject={combatObject}
           currentView={"PreBattle"}
+          onAddFighterPress={onAddFighterPress}
         />
         <View style={Styles.buttonMenu}>
           <TouchableOpacity onPress={onStartPress}>

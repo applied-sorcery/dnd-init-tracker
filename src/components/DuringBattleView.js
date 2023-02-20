@@ -22,6 +22,7 @@ const DuringBattleView = ({
   onResetPress,
   renderFighterListItem,
   combatObject,
+  onAddFighterPress,
 }) => (
   <>
     <Text style={Styles.defaultText}>{"Round: " + combatObject.round}</Text>
@@ -29,6 +30,7 @@ const DuringBattleView = ({
       renderFighterListItem={renderFighterListItem}
       combatObject={combatObject}
       currentView={"DuringBattle"}
+      onAddFighterPress={onAddFighterPress}
     />
     <View style={Styles.buttonMenu}>
       <TouchableOpacity onPress={onNextPress}>
