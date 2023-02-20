@@ -35,4 +35,9 @@ Now you can run the app with:
     npx react-native start
     # Leave running, open a new terminal...
     npx react-native run-android
-    
+
+Remember to use java 11 when compiling!
+
+    # in arch linux
+    sudo archlinux-java set java-11-openjdk
+
