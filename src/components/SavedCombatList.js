@@ -12,7 +12,20 @@ import Styles from "../../Style";
 //this is the list of added/ready fighters. it can be populated manually or
 // by loading groups/individuals
 const SavedCombatList = ({ savedCombats, onConfirmLoadCobmat }) => {
-  const [combatList, setCombatList] = useState(savedCombats);
+  //it's important to note here that this list of saved combats is just hard coded test data. There are no real saved combats.
+  //we need to fix save/load functionality, as it was broken when migrating to drawer navigation.
+  const [combatList, setCombatList] = useState([
+    {
+      id: 1,
+      name: "my combat 1",
+      fighters: [
+        { name: "fighter-1", initScore: 2, id: 1 },
+        { name: "fighter-2", initScore: 3, id: 2 },
+      ],
+      round: 0,
+      whoseTurn: 0,
+    },
+  ]);
 
   //used by FlatList in <SavedCombats />
   const renderCombatListItem = ({ item }) => (

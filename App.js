@@ -21,6 +21,7 @@ import store from "./src/redux/store";
 import Styles from "./Style.js";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
+import SavedCombatList from "./src/components/SavedCombatList.js";
 
 const Drawer = createDrawerNavigator();
 
@@ -38,7 +39,8 @@ const App = () => {
         }}
       >
         <Drawer.Screen name="Main Menu" component={MainMenu} />
-        <Drawer.Screen name="Combat" component={CombatContainer} />
+        <Drawer.Screen name="SavedCombats" component={SavedCombatList} />
+        <Drawer.Screen name="CombatContainer" component={CombatContainer} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

@@ -13,18 +13,23 @@ const MainMenu = ({
   onLoadCombatPress,
   setCurrentView,
   fighters,
+  navigation,
 }) => (
   <View style={Styles.combatMenu}>
     <View style={Styles.someButtonsColumn}>
       <TouchableOpacity
         style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
-        onPress={onNewCombatPress}
+        onPress={() => {
+          navigation.navigate("CombatContainer");
+        }}
       >
         <Text style={Styles.defaultText}>NEW COMBAT</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
-        onPress={onLoadCombatPress}
+        onPress={() => {
+          navigation.navigate("SavedCombats");
+        }}
       >
         <Text style={Styles.defaultText}>LOAD COMBAT</Text>
       </TouchableOpacity>
