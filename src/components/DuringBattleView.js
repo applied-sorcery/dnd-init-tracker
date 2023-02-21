@@ -29,7 +29,6 @@ const DuringBattleView = ({
     <FighterList
       renderFighterListItem={renderFighterListItem}
       combatObject={combatObject}
-      currentView={"DuringBattle"}
       onAddFighterPress={onAddFighterPress}
     />
     <View style={Styles.buttonMenu}>

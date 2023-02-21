@@ -1,30 +1,7 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  Button,
-  Text,
-  FlatList,
-  TextInput,
-  SafeAreaView,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
-//import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import Icon from "react-native-vector-icons/MaterialIcons";
-//import Icon from '@expo/vector-icons/MaterialIcons';
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import Styles from "../../Style";
+import React from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-const ListItem = ({
-  item,
-  addItem,
-  removeItem,
-  onInfoPress,
-  myTurn,
-  onPress,
-}) => {
+const ListItem = ({ item, myTurn, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress ? () => onPress(item) : null}>
       <View style={myTurn ? styles.listItemViewMyTurn : styles.listItemView}>
@@ -95,8 +72,6 @@ const styles = StyleSheet.create({
 
   right: {
     flexDirection: "row",
-    // borderWidth: 4,
-    // borderColor: "green",
     margin: 0,
     padding: 0,
   },
