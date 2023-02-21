@@ -19,11 +19,11 @@ import InfoView from "./src/components/InfoView.js";
 import { Provider as StateProvider } from "react-redux";
 import store from "./src/redux/store";
 import Styles from "./Style.js";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import SavedCombatList from "./src/components/SavedCombatList.js";
 
-const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
@@ -32,16 +32,16 @@ const App = () => {
     // <MainMenu />
     // </StateProvider>
     <NavigationContainer>
-      <Drawer.Navigator
+      <Stack.Navigator
         initialRouteName="Main Menu"
         screenOptions={{
           headerShown: false,
         }}
       >
-        <Drawer.Screen name="Main Menu" component={MainMenu} />
-        <Drawer.Screen name="SavedCombats" component={SavedCombatList} />
-        <Drawer.Screen name="CombatContainer" component={CombatContainer} />
-      </Drawer.Navigator>
+        <Stack.Screen name="Main Menu" component={MainMenu} />
+        <Stack.Screen name="SavedCombats" component={SavedCombatList} />
+        <Stack.Screen name="CombatContainer" component={CombatContainer} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
