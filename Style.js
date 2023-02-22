@@ -112,8 +112,8 @@ const Styles = StyleSheet.create({
   fighterListWrapper: {
     marginTop: 50,
     marginBottom: 50,
+    height: 200,
     // todo: calculate height of 5 list items
-    //height: "25%",
   },
 
 });

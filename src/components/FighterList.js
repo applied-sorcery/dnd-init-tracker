@@ -32,13 +32,12 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
       [Styles.fighterListWrapper, {
         borderWidth: 0,
         borderColor: '#fff',
-        //height: 200,
+        height: 200,
       }]}>
       <FlatList
         style={{
           borderWidth: 1,
           borderColor: '#fff',
-          height: 200,
         }}
         contentContainerStyle={{
           flex: 1,
@@ -49,7 +48,7 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (
           <View style={{
-            //alignItems: "center",
+            alignItems: "center",
             borderWidth: 1,
             borderColor: '#fff',
           }}>

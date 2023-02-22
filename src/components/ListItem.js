@@ -1,7 +1,17 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { AppText } from "./CustomCore"
 
-const ListItem = ({ item, myTurn, onPress }) => {
+const ListItem = ({item, myTurn, onPress}) => {
+  return (
+    <>
+    <AppText>{item.name}</AppText>
+    <AppText>{item.initScore && "init: " + item.initScore}</AppText>
+    </>
+  )
+}
+
+const ListItemOld = ({ item, myTurn, onPress }) => {
 //const ListItem = (props) => {
   return (
     //<Text>List Item</Text>
