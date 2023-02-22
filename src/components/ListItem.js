@@ -2,9 +2,11 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const ListItem = ({ item, myTurn, onPress }) => {
+//const ListItem = (props) => {
   return (
+    //<Text>List Item</Text>
     <TouchableOpacity onPress={onPress ? () => onPress(item) : null}>
-      {/*<View style={myTurn ? styles.listItemViewMyTurn : styles.listItemView}>*/}
+      {/*<View style={myTurn ? styles.listItemViewMyTurn : styles.listItemView}>}*/}
       <View style={styles.listItemView}>
         <Text style={styles.listItemText}>{item.name}</Text>
         <Text style={[styles.listItemText]}>

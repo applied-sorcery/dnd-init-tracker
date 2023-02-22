@@ -30,23 +30,26 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
     {/*<View style={Styles.listArea}>*/}
     <View style={
       [Styles.fighterListWrapper, {
-        borderWidth: 1,
+        borderWidth: 0,
         borderColor: '#fff',
-        //flex: 1,
+        //height: 200,
       }]}>
       <FlatList
         style={{
           borderWidth: 1,
           borderColor: '#fff',
           height: 200,
-          //justifyContent: 'flex-end',
+        }}
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: 'flex-end',
         }}
         data={combatObject.fighters}
         renderItem={FighterListItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (
           <View style={{
-            alignItems: "center",
+            //alignItems: "center",
             borderWidth: 1,
             borderColor: '#fff',
           }}>
