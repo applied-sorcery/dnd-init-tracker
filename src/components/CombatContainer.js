@@ -226,17 +226,12 @@ const CombatContainer = ({ navigation }) => {
       <View
         style={{
           flex: 1,
-          minHeight: "75%",
+          //minHeight: "75%",
           // borderWidth: 5,
-          borderColor: "cornflowerblue",
+          //borderColor: "cornflowerblue",
         }}
       >
-        {
-          //NewCombatView component was useless and redundant so removed
-          //MAIN MENU will now be a separate screen you can navigate to
-          //Load Combat will now be a modal that pops up a list of combats to load
-          //PreBattle and DuringBattle are now the same compoment: CombatView
-        }
+
         <CombatView
           combatObject={combatObject}
           onAddFighterPress={onAddFighterPress}
@@ -245,18 +240,17 @@ const CombatContainer = ({ navigation }) => {
           onNextPress={onNextPress}
         />
 
-        {showSaveCombatView && (
-          <SaveCombatView
-            combatObject={combatObject}
-            onChangeCombatName={(text) =>
-              setCombatObject({ ...combatObject, name: text })
-            }
-            name={name}
-            showSaveCombatView={showSaveCombatView}
-            setShowSaveCombatView={(value) => setShowSaveCombatView(value)}
-            onConfirmSaveCombat={onConfirmSaveCombat}
-          />
-        )}
+        <SaveCombatView
+          combatObject={combatObject}
+          onChangeCombatName={(text) =>
+            setCombatObject({ ...combatObject, name: text })
+          }
+          name={name}
+          showSaveCombatView={showSaveCombatView}
+          setShowSaveCombatView={(value) => setShowSaveCombatView(value)}
+          onConfirmSaveCombat={onConfirmSaveCombat}
+        />
+
       </View>
       <AddFighterView
         combatObject={combatObject}

@@ -23,11 +23,20 @@ const CombatView = ({
   onNextPress,
   onResetPress,
 }) => (
+
   <>
+
+    <FighterList
+      renderFighterListItem={renderFighterListItem}
+      combatObject={combatObject}
+      currentView={"PreBattle"}
+      onAddFighterPress={onAddFighterPress}
+    />
+
+    {/*
     {
       <View style={[{ flex: 1, borderWidth: 0, borderColor: "red" }]}>
         <Text style={Styles.defaultText}> {"[get ready]"}</Text>
-        {/* <FighterList renderItem={renderItem} fighters={fighters} /> */}
         <FighterList
           renderFighterListItem={renderFighterListItem}
           combatObject={combatObject}
@@ -47,6 +56,9 @@ const CombatView = ({
         </View>
       </View>
     }
+    */}
+
   </>
-);
+
+); // CombatView
 export default CombatView;

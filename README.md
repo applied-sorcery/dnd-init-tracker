@@ -36,8 +36,17 @@ Now you can run the app with:
     # Leave running, open a new terminal...
     npx react-native run-android
 
+## Tips
+
 Remember to use java 11 when compiling!
 
     # in arch linux
     sudo archlinux-java set java-11-openjdk
+
+There is a react native development menu on your android device.
+
+    # hardware device (if shaking does not work)
+    $ adb shell input keyevent 82
+
+    # <CTRL-M> in android emulator
 

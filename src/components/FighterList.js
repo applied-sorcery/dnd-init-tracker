@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { PlusButton, AppButton } from "./CustomCore.js";
+import { PlusButton, AppButton, AppText } from "./CustomCore.js";
 
 import ListItem from "./ListItem";
 import Styles from "../../Style";
@@ -26,21 +26,41 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
   };
 
   return (
-    <View style={Styles.listArea}>
+    <>
+    {/*<View style={Styles.listArea}>*/}
+    <View style={
+      [Styles.fighterListWrapper, {
+        borderWidth: 1,
+        borderColor: '#fff',
+        //flex: 1,
+      }]}>
       <FlatList
+        style={{
+          borderWidth: 1,
+          borderColor: '#fff',
+          height: 200,
+          //justifyContent: 'flex-end',
+        }}
         data={combatObject.fighters}
         renderItem={FighterListItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (
-          <Text style={Styles.defaultText}>{"<no mobs yet>"}</Text>
+          <View style={{
+            alignItems: "center",
+            borderWidth: 1,
+            borderColor: '#fff',
+          }}>
+            <AppText>{"Press (+) to add a fighter"}</AppText>
+          </View>
         )}
         keyboardShouldPersistTaps="always"
       />
-
-      <View style={{ alignItems: "center" }}>
-        <PlusButton onPress={onAddFighterPress}></PlusButton>
-      </View>
     </View>
+
+    <View style={{ alignItems: "center" }}>
+      <PlusButton onPress={onAddFighterPress}></PlusButton>
+    </View>
+    </>
   );
 }; // FighterList
 

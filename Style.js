@@ -17,8 +17,9 @@ const Styles = StyleSheet.create({
   /* Wrapper for the entire screen */
   container: {
     backgroundColor: "#2f363c",
-    minHeight: '100%',
-    paddingTop: 10,
+    //minHeight: '100%',
+    flex: 1,
+    paddingTop: 30,
   },
   safeArea: {
     height: 30,
@@ -32,11 +33,13 @@ const Styles = StyleSheet.create({
     borderRadius: 35,
     alignItems: "center",
   },
+  /*
   listArea: {
     flex: 3,
     // borderWidth: 4,
     // borderColor: "white",
   },
+  */
   ListItemText: { color: "#c85c5c" },
   searchTextInput: {
     flex: 1,
@@ -56,15 +59,16 @@ const Styles = StyleSheet.create({
   },
 
   controlButtonRow: {
-    flex: 1,
+    height: 100,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignContent: "center",
-    height: "12%",
-    maxWidt: "10%",
-    marginLeft: 10,
-    marginBottom: 10,
-    padding: 0,
+    //flex: 1,
+    //alignContent: "center",
+    //height: "12%",
+    //maxWidt: "10%",
+    //marginLeft: 10,
+    //marginBottom: 10,
+    //padding: 0,
     // borderColor: "purple",
     // borderWidth: 2,
   },
@@ -104,6 +108,14 @@ const Styles = StyleSheet.create({
     // borderWidth: 2,
     borderColor: "limegreen",
   },
+
+  fighterListWrapper: {
+    marginTop: 50,
+    marginBottom: 50,
+    // todo: calculate height of 5 list items
+    //height: "25%",
+  },
+
 });
 
 export default Styles;
