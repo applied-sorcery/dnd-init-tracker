@@ -9,6 +9,7 @@ import {
 
 import FighterList from "./FighterList";
 import Styles from "../../Style";
+import { CtrlBtn } from './CustomCore'
 
 //if there are no saved combats, assume it's a new combat, display new combat view
 //if there are saved combats, then we will display a Combat Menu with options: Load or New Combat
@@ -33,17 +34,10 @@ const CombatView = ({
       onAddFighterPress={onAddFighterPress}
     />
 
-    {/* Switch to using <CtrlBtn> */}
-    <View style={Styles.buttonMenu}>
-      <TouchableOpacity onPress={onStartPress}>
-        <Text style={Styles.button}>START</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onNextPress}>
-        <Text style={Styles.button}>NEXT</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onResetPress}>
-        <Text style={Styles.button}>RESET</Text>
-      </TouchableOpacity>
+    <View style={Styles.controlButtonRow}>
+      <CtrlBtn onPress={onStartPress}>START</CtrlBtn>
+      <CtrlBtn onPress={onNextPress}>NEXT</CtrlBtn>
+      <CtrlBtn onPress={onResetPress}>RESET</CtrlBtn>
     </View>
 
   </>
