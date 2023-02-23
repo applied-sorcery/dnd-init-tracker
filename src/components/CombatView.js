@@ -34,10 +34,13 @@ const CombatView = ({
       onAddFighterPress={onAddFighterPress}
     />
 
-    <View style={Styles.controlButtonRow}>
-      <CtrlBtn onPress={onStartPress}>START</CtrlBtn>
-      <CtrlBtn onPress={onNextPress}>NEXT</CtrlBtn>
-      <CtrlBtn onPress={onResetPress}>RESET</CtrlBtn>
+    <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 30}}>
+      <View
+        style={Styles.controlButtonRow}>
+        <CtrlBtn onPress={onStartPress}>START</CtrlBtn>
+        <CtrlBtn onPress={onNextPress}>NEXT</CtrlBtn>
+        <CtrlBtn onPress={onResetPress}>RESET</CtrlBtn>
+      </View>
     </View>
 
   </>

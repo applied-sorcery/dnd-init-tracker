@@ -59,7 +59,6 @@ const Styles = StyleSheet.create({
   },
 
   controlButtonRow: {
-    height: 100,
     flexDirection: "row",
     justifyContent: "space-evenly",
     //flex: 1,
