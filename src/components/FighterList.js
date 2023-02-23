@@ -14,7 +14,6 @@ import Styles from "../../Style";
 
 
 const FighterList = ({ combatObject, onAddFighterPress }) => {
-  // used by FlatList in <FighterList />
   const FighterListItem = ({ item }) => {
     return (
       <View style={
@@ -30,7 +29,6 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
 
   return (
     <>
-    {/*<View style={Styles.listArea}>*/}
     <View style={
       [Styles.fighterListWrapper, {
         borderWidth: 0,

@@ -22,27 +22,6 @@ const ControlButtons = ({
       <CtrlBtn onPress={onSaveCombatPress}>Save</CtrlBtn>
       <CtrlBtn onPress={onLoadCombatPress}>Load</CtrlBtn>
     </View>
-
-    {/*
-    <View style={[Styles.controlButtonRow]}>
-      {currentView === "DuringBattle" || currentView === "PreBattle" ? (
-        <CtrlBtn onPress={onClearPress}>Clear</CtrlBtn>
-      ) : (
-        ""
-      )}
-      {currentView !== "LoadCombat" ? (
-        <CtrlBtn onPress={onSaveCombatPress}>Save Combat</CtrlBtn>
-      ) : (
-        ""
-      )}
-      {currentView !== "LoadCombat" && currentView !== "NewCombat" ? (
-        <CtrlBtn onPress={onLoadCombatPress}>Load Combat</CtrlBtn>
-      ) : (
-        ""
-      )}
-    </View>
-    */}
-
   </>
 );
 export default ControlButtons;

@@ -13,9 +13,7 @@ import {
 
 import ListItem from "./ListItem.js";
 import InfoView from "./InfoView.js";
-//import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Icon from "react-native-vector-icons/MaterialIcons";
-//import Icon from '@expo/vector-icons/MaterialIcons';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Styles from "../../Style.js";

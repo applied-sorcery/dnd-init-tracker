@@ -61,7 +61,6 @@ const CombatContainer = ({ navigation }) => {
   const setFighters = (prop) => {
     setCombatObject({ ...combatObject, fighters: prop });
   };
-  // const [showCombatMenu, setShowCombatMenu] = useState(true);
   const [showNewCombatView, setShowNewCombatView] = useState(false);
   const [showSaveCombatView, setShowSaveCombatView] = useState(false);
   const [addFighterModalVisible, setAddFighterModalVisible] = useState(false);
@@ -83,20 +82,6 @@ const CombatContainer = ({ navigation }) => {
   const newFighterId = () => {
     return combatObject.fighters.length + 1;
   };
-
-  const isNewCombat = () => {
-    console.log("isNewCombat()");
-    return savedCombats;
-  };
-
-  const sortFighters = () => {
-    //sort fighters by init score
-  };
-
-  const isCombatReady = () =>
-    //checks to see if there even are fighters in the list,
-    // and if they all have init scores
-    fighters && fighters.every((fighter) => fighter.initScore);
 
   //button press handlers
 
@@ -208,9 +193,6 @@ const CombatContainer = ({ navigation }) => {
   };
 
   return (
-    //this is view returned by the combatView component.
-    //different sub view components are rendered based on state.
-
     <View style={Styles.container}>
       <ControlButtons
         currentView={currentView}
@@ -226,9 +208,6 @@ const CombatContainer = ({ navigation }) => {
       <View
         style={{
           flex: 1,
-          //minHeight: "75%",
-          // borderWidth: 5,
-          //borderColor: "cornflowerblue",
         }}
       >
 

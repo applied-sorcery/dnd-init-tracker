@@ -8,8 +8,6 @@ import {
 } from "react-native";
 import Styles from "../../Style";
 
-//this displays when the user presses the new combat button or when
-//there are no saved combats to load
 const NewCombatView = ({
   onAddFighterPress,
   onSaveCombatPress,

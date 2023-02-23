@@ -1,9 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-// if using class components use lifecycle methods (component did mount, etc)
-//we use arrow function components so using hooks
-
 const Header = ({title}) => {
   return (
     <View style={styles.header}>
