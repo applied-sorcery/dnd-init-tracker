@@ -11,7 +11,6 @@ import { CtrlBtn } from "./CustomCore.js";
 
 const ControlButtons = ({
   onClearPress,
-  currentView,
   onSaveCombatPress,
   onLoadCombatPress,
 }) => (

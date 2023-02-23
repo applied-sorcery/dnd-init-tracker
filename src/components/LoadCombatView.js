@@ -9,7 +9,7 @@ import {
 import ListItem from "./ListItem";
 import Styles from "../../Style";
 
-const SavedCombatList = ({ savedCombats, onConfirmLoadCobmat }) => {
+const LoadCombatView = ({ savedCombats, onConfirmLoadCobmat }) => {
   //This list of saved combats is just hard coded test data. There are no real saved combats.
   //todo: fix save/load functionality within one session (was broken by implementing navigation/screens)
   const [combatList, setCombatList] = useState([
@@ -44,4 +44,4 @@ const SavedCombatList = ({ savedCombats, onConfirmLoadCobmat }) => {
   );
 };
 
-export default SavedCombatList;
+export default LoadCombatView;

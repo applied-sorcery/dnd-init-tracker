@@ -11,11 +11,9 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import PreBattleView from "./PreBattleView.js";
-import DuringBattleView from "./DuringBattleView.js";
 import CombatView from "./CombatView";
 import MainMenu from "./MainMenu.js";
-import SavedCombatList from "./SavedCombatList.js";
+import LoadCombatView from "./LoadCombatView.js";
 import SaveCombatView from "./SaveCombatView.js";
 import ControlButtons from "./ControlButtons.js";
 import Styles from "../../Style";
@@ -24,7 +22,6 @@ import AddFighterView from "./AddFighterView.js";
 const baseUrl = "http://dnd5eapi.co";
 
 const CombatContainer = ({ navigation }) => {
-  const [currentView, setCurrentView] = useState("MainMenu");
   const [combatObject, setCombatObject] = useState({
     id: 0,
     name: "",
@@ -89,7 +86,6 @@ const CombatContainer = ({ navigation }) => {
     setFighters(
       [...fighters, newFighter].sort((a, b) => b.initScore - a.initScore)
     );
-    setCurrentView("PreBattle");
   };
 
   const onAddFighterPress = () => {
@@ -98,7 +94,6 @@ const CombatContainer = ({ navigation }) => {
   };
 
   const onNewCombatPress = () => {
-    setCurrentView("NewCombat");
     setCombatObject({
       id: 0,
       name: "",
@@ -108,14 +103,11 @@ const CombatContainer = ({ navigation }) => {
     });
   };
 
-  const onNewFighterPress = () => {};
 
   const onLoadCombatPress = () => {
-    setCurrentView("LoadCombat");
   };
 
   const onConfirmLoadCobmat = (combatObj) => {
-    setCurrentView("PreBattle");
     setCombatObject({ ...combatObj });
   };
 
@@ -137,14 +129,6 @@ const CombatContainer = ({ navigation }) => {
     setShowSaveCombatView(false);
   };
 
-  const onMenuPress = () => {
-    setCurrentView("MainMenu");
-  };
-
-  const onBackPress = () => {
-    setCurrentView("PreBattle");
-  };
-
   const onStartPress = () => {
     if (round == 0) {
       setCombatObject({
@@ -153,7 +137,6 @@ const CombatContainer = ({ navigation }) => {
         whoseTurn: 0,
       });
     }
-    setCurrentView("DuringBattle");
   };
 
   const onNextPress = () => {
@@ -179,7 +162,6 @@ const CombatContainer = ({ navigation }) => {
       whoseTurn: 0,
       round: 0,
     });
-    setCurrentView("PreBattle");
   };
 
   const onClearPress = () => {
@@ -195,22 +177,11 @@ const CombatContainer = ({ navigation }) => {
   return (
     <View style={Styles.container}>
       <ControlButtons
-        currentView={currentView}
-        onAddFighterPress={onAddFighterPress}
         onLoadCombatPress={onLoadCombatPress}
         onSaveCombatPress={onSaveCombatPress}
-        onMenuPress={onMenuPress}
-        onBackPress={onBackPress}
-        combatObject={combatObject}
         onClearPress={onClearPress}
       />
-
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-
+      <View style={{ flex: 1 }}>
         <CombatView
           combatObject={combatObject}
           onAddFighterPress={onAddFighterPress}
@@ -218,19 +189,21 @@ const CombatContainer = ({ navigation }) => {
           onStartPress={onStartPress}
           onNextPress={onNextPress}
         />
-
-        <SaveCombatView
-          combatObject={combatObject}
-          onChangeCombatName={(text) =>
-            setCombatObject({ ...combatObject, name: text })
-          }
-          name={name}
-          showSaveCombatView={showSaveCombatView}
-          setShowSaveCombatView={(value) => setShowSaveCombatView(value)}
-          onConfirmSaveCombat={onConfirmSaveCombat}
-        />
-
       </View>
+
+      {/*Modals for saving combat and adding fither*/}
+      
+      <SaveCombatView
+        combatObject={combatObject}
+        onChangeCombatName={(text) =>
+          setCombatObject({ ...combatObject, name: text })
+        }
+        name={name}
+        showSaveCombatView={showSaveCombatView}
+        setShowSaveCombatView={(value) => setShowSaveCombatView(value)}
+        onConfirmSaveCombat={onConfirmSaveCombat}
+      />
+      
       <AddFighterView
         combatObject={combatObject}
         onAddFighterSubmit={handleAddFighterSubmit}

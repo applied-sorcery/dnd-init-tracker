@@ -26,7 +26,6 @@ const CombatView = ({
     <FighterList
       renderFighterListItem={renderFighterListItem}
       combatObject={combatObject}
-      currentView={"PreBattle"}
       onAddFighterPress={onAddFighterPress}
     />
 
