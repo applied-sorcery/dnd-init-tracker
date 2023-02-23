@@ -19,8 +19,8 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
     return (
       <View style={
         (combatObject.fighters.indexOf(item) === combatObject.whoseTurn) ?
-          Styles.fighterListItem
-          : [Styles.fighterListItem, Styles.highlightFighter]
+          [Styles.fighterListItem, Styles.highlightFighter]
+          : Styles.fighterListItem
       }>
         <AppText style={{marginRight: 18}}>[ init: {item.initScore} ]</AppText>
         <AppText>{item.name}</AppText>
@@ -43,8 +43,9 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
           borderColor: '#fff',
         }}
         contentContainerStyle={{
-          flex: 1,
-          justifyContent: 'flex-end',
+          // pushes list items to bottom, but flex breaks scrolling
+          //flex: 1,
+          //justifyContent: 'flex-end',
         }}
         data={combatObject.fighters}
         renderItem={FighterListItem}

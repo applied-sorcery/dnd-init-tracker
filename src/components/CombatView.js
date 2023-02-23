@@ -33,30 +33,18 @@ const CombatView = ({
       onAddFighterPress={onAddFighterPress}
     />
 
-    {/*
-    {
-      <View style={[{ flex: 1, borderWidth: 0, borderColor: "red" }]}>
-        <Text style={Styles.defaultText}> {"[get ready]"}</Text>
-        <FighterList
-          renderFighterListItem={renderFighterListItem}
-          combatObject={combatObject}
-          currentView={"PreBattle"}
-          onAddFighterPress={onAddFighterPress}
-        />
-        <View style={Styles.buttonMenu}>
-          <TouchableOpacity onPress={onStartPress}>
-            <Text style={Styles.button}>START</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onNextPress}>
-            <Text style={Styles.button}>NEXT</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onResetPress}>
-            <Text style={Styles.button}>RESET</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    }
-    */}
+    {/* Switch to using <CtrlBtn> */}
+    <View style={Styles.buttonMenu}>
+      <TouchableOpacity onPress={onStartPress}>
+        <Text style={Styles.button}>START</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={onNextPress}>
+        <Text style={Styles.button}>NEXT</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={onResetPress}>
+        <Text style={Styles.button}>RESET</Text>
+      </TouchableOpacity>
+    </View>
 
   </>
 

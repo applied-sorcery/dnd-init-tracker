@@ -122,8 +122,7 @@ const Styles = StyleSheet.create({
   },
 
   highlightFighter: {
-    borderColor: '#000',
-    borderWidth: 2,
+    backgroundColor: '#000',
   },
 
 });
