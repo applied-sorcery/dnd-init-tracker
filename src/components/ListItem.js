@@ -2,12 +2,12 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { AppText } from "./CustomCore"
 
-const ListItem = ({item, myTurn, onPress}) => {
+const ListItem = ({item, myTurn}) => {
   return (
-    <>
-    <AppText>{item.name}</AppText>
-    <AppText>{item.initScore && "init: " + item.initScore}</AppText>
-    </>
+    <View>
+      <AppText>{item.name}</AppText>
+      <AppText>{item.initScore && "init: " + item.initScore}</AppText>
+    </View>
   )
 }
 

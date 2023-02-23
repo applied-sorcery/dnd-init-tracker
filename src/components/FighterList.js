@@ -12,16 +12,19 @@ import { PlusButton, AppButton, AppText } from "./CustomCore.js";
 import ListItem from "./ListItem";
 import Styles from "../../Style";
 
-//this is the list of added/ready fighters. it can be populated manually or
-// by loading groups/individuals
+
 const FighterList = ({ combatObject, onAddFighterPress }) => {
-  //used by FlatList in <FighterList />
+  // used by FlatList in <FighterList />
   const FighterListItem = ({ item }) => {
     return (
-      <ListItem
-        item={item}
-        myTurn={combatObject.fighters.indexOf(item) === combatObject.whoseTurn}
-      />
+      <View style={
+        (combatObject.fighters.indexOf(item) === combatObject.whoseTurn) ?
+          Styles.fighterListItem
+          : [Styles.fighterListItem, Styles.highlightFighter]
+      }>
+        <AppText style={{marginRight: 18}}>[ init: {item.initScore} ]</AppText>
+        <AppText>{item.name}</AppText>
+      </View>
     );
   };
 

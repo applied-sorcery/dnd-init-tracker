@@ -116,6 +116,16 @@ const Styles = StyleSheet.create({
     // todo: calculate height of 5 list items
   },
 
+  fighterListItem: {
+    flexDirection:'row',
+    marginLeft: 10,
+  },
+
+  highlightFighter: {
+    borderColor: '#000',
+    borderWidth: 2,
+  },
+
 });
 
 export default Styles;
