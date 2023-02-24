@@ -6,7 +6,6 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import ListItem from "./ListItem";
 import Styles from "../../Style";
 
 const LoadCombatView = ({ savedCombats, onConfirmLoadCobmat }) => {
@@ -26,7 +25,11 @@ const LoadCombatView = ({ savedCombats, onConfirmLoadCobmat }) => {
   ]);
 
   const renderCombatListItem = ({ item }) => (
-    <ListItem item={item} onPress={(item) => onConfirmLoadCobmat(item)} />
+    <View>
+    <AppText>{item.name}</AppText>
+    <AppText>{item.initScore && "init: " + item.initScore}</AppText>
+  </View>
+    //todo: make the above pressable so we can load combats. Old:  <ListItem item={item} onPress={(item) => onConfirmLoadCobmat(item)} />
   );
 
   return (
@@ -36,7 +39,7 @@ const LoadCombatView = ({ savedCombats, onConfirmLoadCobmat }) => {
         renderItem={renderCombatListItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (
-          <Text style={Styles.defaultText}>{"<no mobs yet>"}</Text>
+          <AppText>{"<no mobs yet>"}</AppText>
         )}
         keyboardShouldPersistTaps="always"
       />

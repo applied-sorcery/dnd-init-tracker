@@ -7,32 +7,19 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Styles from "../../Style";
+import { CtrlBtn, AppText } from "./CustomCore";
 
 const MainMenu = ({
   onNewCombatPress,
   fighters,
   navigation,
 }) => (
-  <View style={Styles.combatMenu}>
-    <View style={Styles.someButtonsColumn}>
-      <TouchableOpacity
-        style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
-        onPress={() => {
-          navigation.navigate("Combat Container");
-        }}
-      >
-        <Text style={Styles.defaultText}>NEW COMBAT</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[Styles.controlButton, { minWidth: "60%", maxHeight: "20%" }]}
-        onPress={() => {
-          navigation.navigate("Load Combat");
-        }}
-      >
-        <Text style={Styles.defaultText}>LOAD COMBAT</Text>
-      </TouchableOpacity>
+  <View style={Styles.container}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <CtrlBtn style={Styles.mainMenuButton} onPress={() => { navigation.navigate("Combat Container")}}>New Combat</CtrlBtn>
+        <CtrlBtn style={Styles.mainMenuButton} onPress={() => { navigation.navigate("Load Combat")}}>Load Combat</CtrlBtn>
+        <AppText style={Styles.defaultText}>Recent Combats:</AppText>
     </View>
-    <Text style={Styles.defaultText}>Recent Combats:</Text>
   </View>
 );
 

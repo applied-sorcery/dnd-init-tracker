@@ -11,13 +11,15 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import CombatView from "./CombatView";
 import MainMenu from "./MainMenu.js";
 import LoadCombatView from "./LoadCombatView.js";
 import SaveCombatView from "./SaveCombatView.js";
-import ControlButtons from "./ControlButtons.js";
 import Styles from "../../Style";
 import AddFighterView from "./AddFighterView.js";
+import { CtrlBtn } from './CustomCore'
+import FighterList from "./FighterList";
+
+
 
 const baseUrl = "http://dnd5eapi.co";
 
@@ -58,7 +60,6 @@ const CombatContainer = ({ navigation }) => {
   const setFighters = (prop) => {
     setCombatObject({ ...combatObject, fighters: prop });
   };
-  const [showNewCombatView, setShowNewCombatView] = useState(false);
   const [showSaveCombatView, setShowSaveCombatView] = useState(false);
   const [addFighterModalVisible, setAddFighterModalVisible] = useState(false);
   const [savedCombats, setSavedCombats] = useState([
@@ -176,19 +177,31 @@ const CombatContainer = ({ navigation }) => {
 
   return (
     <View style={Styles.container}>
-      <ControlButtons
-        onLoadCombatPress={onLoadCombatPress}
-        onSaveCombatPress={onSaveCombatPress}
-        onClearPress={onClearPress}
-      />
+      <View style={Styles.controlButtonRow}>
+        <CtrlBtn onPress={onSaveCombatPress}>Save</CtrlBtn>
+        <CtrlBtn onPress={onLoadCombatPress}>Load</CtrlBtn>
+        <CtrlBtn onPress={onClearPress}>Clear</CtrlBtn>
+      </View>
       <View style={{ flex: 1 }}>
-        <CombatView
+        {/* <CombatView
           combatObject={combatObject}
           onAddFighterPress={onAddFighterPress}
           onResetPress={onResetPress}
           onStartPress={onStartPress}
           onNextPress={onNextPress}
-        />
+        /> */}
+          <FighterList
+            combatObject={combatObject}
+            onAddFighterPress={onAddFighterPress}
+          />
+          <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 30}}>
+            <View
+              style={Styles.controlButtonRow}>
+              <CtrlBtn onPress={onStartPress}>START</CtrlBtn>
+              <CtrlBtn onPress={onNextPress}>NEXT</CtrlBtn>
+              <CtrlBtn onPress={onResetPress}>RESET</CtrlBtn>
+            </View>
+          </View>
       </View>
 
       {/*Modals for saving combat and adding fither*/}

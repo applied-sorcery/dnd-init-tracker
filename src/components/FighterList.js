@@ -9,7 +9,6 @@ import {
 
 import { PlusButton, AppButton, AppText } from "./CustomCore.js";
 
-import ListItem from "./ListItem";
 import Styles from "../../Style";
 
 
