@@ -6,8 +6,8 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import Styles from "../../Style";
-import { CtrlBtn, AppText } from "./CustomCore";
+import Styles from "../../Styles";
+import { CtrlBtn, AppText, AppButton } from "./CustomCore";
 import { ThisIsAContext } from "./ThisIsAContext";
 
 const MainMenu = ({
@@ -28,7 +28,7 @@ const MainMenu = ({
           setState({...state, combatObject: 
           {
             id: 0,
-            name: "",
+            name: "new - unnamed",
             whoseTurn: 0,
             fighters: [],
             round: 0,
@@ -39,7 +39,8 @@ const MainMenu = ({
           New Combat
         </CtrlBtn>
         <CtrlBtn style={Styles.mainMenuButton} onPress={() => { navigation.navigate("Load Combat")}}>Load Combat</CtrlBtn>
-        <AppText style={Styles.defaultText}>Recent Combats:</AppText>
+        <AppText>{"Recent  Combats: \n\n"}</AppText>
+        <AppButton onPress={()=>navigation.navigate("Combat Container")} style={Styles.defaultText}>{state?.combatObject.name}</AppButton>
     </View>
   </View>);
 };

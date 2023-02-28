@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
-import Styles from "../../Style";
+import Styles from "../../Styles";
 import { AppButton, Confirm, AppTextInput, Header } from "./CustomCore.js";
 
 const SaveCombatView = ({

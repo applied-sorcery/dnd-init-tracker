@@ -9,7 +9,7 @@ import {
 
 import { PlusButton, AppButton, AppText } from "./CustomCore.js";
 
-import Styles from "../../Style";
+import Styles from "../../Styles";
 import { ThisIsAContext } from "./ThisIsAContext.js";
 
 const FighterList = ({ onAddFighterPress }) => {

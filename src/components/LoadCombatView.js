@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Pressable
 } from "react-native";
-import Styles from "../../Style";
+import Styles from "../../Styles";
 import { AppText, AppButton } from "./CustomCore";
 import { ThisIsAContext } from "./ThisIsAContext";
 
@@ -38,7 +38,7 @@ const LoadCombatView = ({ savedCombats, onConfirmLoadCobmat, navigation }) => {
         renderItem={renderCombatListItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (
-          <AppText>{"<no mobs yet>"}</AppText>
+          <AppText>{"[no saved combats yet]"}</AppText>
         )}
         keyboardShouldPersistTaps="always"
       />

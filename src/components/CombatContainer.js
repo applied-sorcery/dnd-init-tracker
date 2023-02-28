@@ -14,7 +14,7 @@ import {
 import MainMenu from "./MainMenu.js";
 import LoadCombatView from "./LoadCombatView.js";
 import SaveCombatView from "./SaveCombatView.js";
-import Styles from "../../Style";
+import Styles from "../../Styles";
 import AddFighterView from "./AddFighterView.js";
 import { AppText, CtrlBtn } from './CustomCore'
 import FighterList from "./FighterList";
