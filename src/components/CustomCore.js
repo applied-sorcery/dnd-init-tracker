@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 
+import { colors } from '../../colors.js'
 
 /* Small reusable components
 *
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     marginBottom: 10,
-    color: 'white',
+    color: colors.text,
   },
 
   textInput: {
@@ -30,19 +31,20 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 15,
     textTransform: "uppercase",
-    color: "white",
+    color: colors.text,
     fontWeight: "500",
     marginBottom: 0,
   },
 
   ctrlBtnText: {
     padding: 20,
+    color: colors.text,
   },
 
   header: {
     fontSize: 30,
     marginBottom: 30,
-    color: 'white',
+    color: colors.text,
   },
 
   appBtn: {
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
   ctrlBtn: {
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: "#fff",
+    borderColor: colors.text,
   },
 
   confirmWrapper: {

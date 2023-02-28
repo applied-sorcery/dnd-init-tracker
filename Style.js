@@ -1,10 +1,15 @@
-import { StyleSheet } from "react-native";
-import Colors from "./Colors";
+import { StyleSheet, Appearance } from "react-native";
+//import Colors from "./Colors";
+//import { lightColors, darkColors } from './colors'
+import { colors } from './colors'
+
 
 const Styles = StyleSheet.create({
+
   /* Wrapper for the entire screen */
   container: {
-    backgroundColor: "#2f363c",
+    //backgroundColor: "#2f363c",
+    backgroundColor: colors.background,
     flex: 1,
     paddingTop: 30,
   },
