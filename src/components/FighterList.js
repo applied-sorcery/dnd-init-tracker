@@ -30,15 +30,9 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
     <>
     <View style={
       [Styles.fighterListWrapper, {
-        borderWidth: 0,
-        borderColor: '#fff',
         height: 200,
       }]}>
       <FlatList
-        style={{
-          borderWidth: 1,
-          borderColor: '#fff',
-        }}
         contentContainerStyle={{
           // pushes list items to bottom, but flex breaks scrolling
           //flex: 1,

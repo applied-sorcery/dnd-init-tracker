@@ -25,6 +25,8 @@ const Styles = StyleSheet.create({
   },
 
   fighterListWrapper: {
+    borderWidth: 1,
+    borderColor: colors.text,
     marginTop: 50,
     marginBottom: 50,
     height: 200,
@@ -37,7 +39,7 @@ const Styles = StyleSheet.create({
   },
 
   highlightFighter: {
-    backgroundColor: '#000',
+    backgroundColor: colors.highlight,
   },
 
 });

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 15,
     textTransform: "uppercase",
-    color: colors.text,
+    color: '#fff',
     fontWeight: "500",
     marginBottom: 0,
   },
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   confirmWrapper: {
   // top padding or margin crashes app
     height: "100%",
-    backgroundColor: "black",
+    backgroundColor: colors.background,
   },
 
   confirmContent: {
