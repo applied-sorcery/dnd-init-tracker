@@ -1,41 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   Text,
   TextInput,
   FlatList,
   TouchableOpacity,
+  Pressable
 } from "react-native";
 import Styles from "../../Style";
+import { AppText, AppButton } from "./CustomCore";
+import { ThisIsAContext } from "./ThisIsAContext";
 
-const LoadCombatView = ({ savedCombats, onConfirmLoadCobmat }) => {
-  //This list of saved combats is just hard coded test data. There are no real saved combats.
-  //todo: fix save/load functionality within one session (was broken by implementing navigation/screens)
-  const [combatList, setCombatList] = useState([
-    {
-      id: 1,
-      name: "my combat 1",
-      fighters: [
-        { name: "fighter-1", initScore: 2, id: 1 },
-        { name: "fighter-2", initScore: 3, id: 2 },
-      ],
-      round: 0,
-      whoseTurn: 0,
-    },
-  ]);
+const LoadCombatView = ({ savedCombats, onConfirmLoadCobmat, navigation }) => {
+  const [combatList, setCombatList] = useState({id: 0, name: "dummy"});
+  const { state, setState} = useContext(ThisIsAContext);
 
   const renderCombatListItem = ({ item }) => (
-    <View>
+    <Pressable onPress={() => {
+      //This is one way to update state after loading. Another, possibly better way would be pass the item.id 
+      //back as route param below * using the navigation object provided by react native navigation (our stack nav).
+      setState({...state, combatObject: item});  
+      console.log(item)
+      navigation.navigate("Combat Container"
+      /*  (see note above * this is where the route param would go then the right component could load the 
+      combat based on the id and we don't have to pass around the whole object.) , {id: item.id} */);
+    }}>
     <AppText>{item.name}</AppText>
-    <AppText>{item.initScore && "init: " + item.initScore}</AppText>
-  </View>
-    //todo: make the above pressable so we can load combats. Old:  <ListItem item={item} onPress={(item) => onConfirmLoadCobmat(item)} />
+    
+  </Pressable>
+    
   );
 
   return (
-    <View style={Styles.listArea}>
+    <View style={Styles.container}>
       <FlatList
-        data={combatList}
+        data={state.savedCombats}
         renderItem={renderCombatListItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (

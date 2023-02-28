@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -10,13 +10,14 @@ import {
 import { PlusButton, AppButton, AppText } from "./CustomCore.js";
 
 import Styles from "../../Style";
+import { ThisIsAContext } from "./ThisIsAContext.js";
 
-
-const FighterList = ({ combatObject, onAddFighterPress }) => {
+const FighterList = ({ onAddFighterPress }) => {
+  const {state, setState} = useContext(ThisIsAContext);
   const FighterListItem = ({ item }) => {
     return (
       <View style={
-        (combatObject.fighters.indexOf(item) === combatObject.whoseTurn) ?
+        (state.combatObject.fighters.indexOf(item) === state.combatObject.whoseTurn) ?
           [Styles.fighterListItem, Styles.highlightFighter]
           : Styles.fighterListItem
       }>
@@ -34,11 +35,9 @@ const FighterList = ({ combatObject, onAddFighterPress }) => {
       }]}>
       <FlatList
         contentContainerStyle={{
-          // pushes list items to bottom, but flex breaks scrolling
-          //flex: 1,
-          //justifyContent: 'flex-end',
+       
         }}
-        data={combatObject.fighters}
+        data={state.combatObject.fighters}
         renderItem={FighterListItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (

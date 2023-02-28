@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -16,76 +16,40 @@ import LoadCombatView from "./LoadCombatView.js";
 import SaveCombatView from "./SaveCombatView.js";
 import Styles from "../../Style";
 import AddFighterView from "./AddFighterView.js";
-import { CtrlBtn } from './CustomCore'
+import { AppText, CtrlBtn } from './CustomCore'
 import FighterList from "./FighterList";
+import { ThisIsAContext } from "./ThisIsAContext.js";
 
 
 
 const baseUrl = "http://dnd5eapi.co";
 
 const CombatContainer = ({ navigation }) => {
-  const [combatObject, setCombatObject] = useState({
-    id: 0,
-    name: "",
-    whoseTurn: 0,
-    fighters: [],
-    round: 0,
-  });
-
-  const { id, name, round, whoseTurn, fighters } = combatObject;
-
-  /**
-   * These are setters for updating the state whenever combatObject needs to change.
-   * you can't just set an attribute of combatObject and expect react to re-render
-   * your comonent. When you update an object's attribute the object isn't changing,
-   * 'CombatObject' still refers to the same object. In react you need to change the
-   * state variable to trigger a re-render, so you have to call setCombatObject.
-   * These functions do that and allow for a concise way for other comps to update
-   * info about this combat object.
-   */
-  const setId = (prop) => {
-    setCombatObject({ ...combatObject, id: prop });
-  };
-  const setName = (prop) => {
-    setCombatObject({ ...combatObject, name: prop });
-  };
-  const setRound = (prop) => {
-    setCombatObject({ ...combatObject, round: prop });
-  };
-
-  const setWhoseTurn = (prop) => {
-    setCombatObject({ ...combatObject, whoseTurn: prop });
-  };
+  
+  const {state, setState} = useContext(ThisIsAContext);
+  const {combatObject, savedCombats} = state;
 
   const setFighters = (prop) => {
-    setCombatObject({ ...combatObject, fighters: prop });
-  };
+    setState({...state, combatObject: {...state.combatObject, fighters: prop }
+  })};
+
   const [showSaveCombatView, setShowSaveCombatView] = useState(false);
   const [addFighterModalVisible, setAddFighterModalVisible] = useState(false);
-  const [savedCombats, setSavedCombats] = useState([
-    {
-      id: 1,
-      name: "my combat 1",
-      fighters: [
-        { name: "fighter-1", initScore: 2, id: 1 },
-        { name: "fighter-2", initScore: 3, id: 2 },
-      ],
-      round: 0,
-      whoseTurn: 0,
-    },
-  ]);
+  
 
   //helper functions
 
+ 
+
   const newFighterId = () => {
-    return combatObject.fighters.length + 1;
+    return state.combatObject.fighters.length + 1;
   };
 
   //button press handlers
 
   const handleAddFighterSubmit = (newFighter) => {
     setFighters(
-      [...fighters, newFighter].sort((a, b) => b.initScore - a.initScore)
+      [...state.combatObject.fighters, newFighter].sort((a, b) => b.initScore - a.initScore)
     );
   };
 
@@ -94,63 +58,71 @@ const CombatContainer = ({ navigation }) => {
     setAddFighterModalVisible(true);
   };
 
-  const onNewCombatPress = () => {
-    setCombatObject({
-      id: 0,
-      name: "",
-      whoseTurn: 0,
-      fighters: [],
-      round: 0,
-    });
-  };
-
-
   const onLoadCombatPress = () => {
+    navigation.navigate("Load Combat")
   };
 
   const onConfirmLoadCobmat = (combatObj) => {
-    setCombatObject({ ...combatObj });
+    // setCombatObject({ ...combatObj });
   };
 
-  const onLoadFighterPress = () => {};
 
   const onSaveCombatPress = () => {
     setShowSaveCombatView(true);
   };
 
+
+  // this function is called when the user presses "ok" button to confirm that they are saving the combat.
+  // It calls setState ( provided by a context defined in App.js, "ThisIsAContext" ).
+  // It uses the spread operator to copy existing state into the new state we are setting
+  // so that we only change the parts we want to change. We are not modifying the current combatObject state,
+  // only the savedCombats array within state. We are adding a new object to the savedCombats array, 
+  //this current combatObject, but we are also apending a name and id to the current combat object
+  //before we add it to the savedCombats array. Lastly we hide the modal  saveCombatView.
+
   const onConfirmSaveCombat = (combatName) => {
-    setSavedCombats([
-      ...savedCombats,
-      {
-        ...combatObject,
-        name: combatName,
-        id: savedCombats.length + 1,
-      },
-    ]);
+    setState({
+      savedCombats: [
+        ...state.savedCombats,
+        {
+          ...state.combatObject,
+          name: combatName,
+          id: state.savedCombats.length + 1,
+        },
+      ], 
+      combatObject: {...state.combatObject},
+    });
     setShowSaveCombatView(false);
   };
 
   const onStartPress = () => {
-    if (round == 0) {
-      setCombatObject({
-        ...combatObject,
-        round: 1,
-        whoseTurn: 0,
+    if (state.combatObject.round == 0) {
+      setState({
+        ...state, combatObject: 
+          {
+            ...state.combatObject,
+            round: 1,
+            whoseTurn: 0,
+          }
       });
     }
   };
 
   const onNextPress = () => {
-    if (fighters.length - 1 == whoseTurn) {
-      setCombatObject({
-        ...combatObject,
-        whoseTurn: 0,
-        round: round + 1,
+    if (state.combatObject.fighters.length - 1 === state.combatObject.whoseTurn) {
+      setState({
+        ...state, combatObject: 
+          { ...state.combatObject,
+            whoseTurn: 0,
+            round: state.combatObject.round + 1,
+          }
       });
     } else {
-      setCombatObject({
-        ...combatObject,
-        whoseTurn: whoseTurn + 1,
+      setState({
+        ...state, combatObject: {
+          ...state.combatObject,
+          whoseTurn: state.combatObject.whoseTurn + 1,
+        }
       });
     }
   };
@@ -158,21 +130,23 @@ const CombatContainer = ({ navigation }) => {
   //this button might be going away, who's actually going to reset a battle to round 0?
   // could be useful for testing
   const onResetPress = () => {
-    setCombatObject({
-      ...combatObject,
-      whoseTurn: 0,
-      round: 0,
-    });
+    alert('decomissioned')
+    // setCombatObject({
+    //   ...combatObject,
+    //   whoseTurn: 0,
+    //   round: 0,
+    // });
   };
 
   const onClearPress = () => {
-    setCombatObject({
-      id: 0,
-      name: "",
-      whoseTurn: 0,
-      fighters: [],
-      round: 0,
-    });
+    alert('decomissioned')
+    // setCombatObject({
+    //   id: 0,
+    //   name: "",
+    //   whoseTurn: 0,
+    //   fighters: [],
+    //   round: 0,
+    // });
   };
 
   return (
@@ -183,15 +157,9 @@ const CombatContainer = ({ navigation }) => {
         <CtrlBtn onPress={onClearPress}>Clear</CtrlBtn>
       </View>
       <View style={{ flex: 1 }}>
-        {/* <CombatView
-          combatObject={combatObject}
-          onAddFighterPress={onAddFighterPress}
-          onResetPress={onResetPress}
-          onStartPress={onStartPress}
-          onNextPress={onNextPress}
-        /> */}
+          <AppText style={{alignSelf: "center"}}>Round: {state.combatObject.round}</AppText>
           <FighterList
-            combatObject={combatObject}
+            combatObject={state.combatObject}
             onAddFighterPress={onAddFighterPress}
           />
           <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 30}}>
@@ -207,18 +175,18 @@ const CombatContainer = ({ navigation }) => {
       {/*Modals for saving combat and adding fither*/}
       
       <SaveCombatView
-        combatObject={combatObject}
+        combatObject={state.combatObject}
         onChangeCombatName={(text) =>
-          setCombatObject({ ...combatObject, name: text })
-        }
-        name={name}
+          setState({...state, combatObject: {...state.combatObject, name: text }
+        })}
+        name={state.combatObject.name}
         showSaveCombatView={showSaveCombatView}
         setShowSaveCombatView={(value) => setShowSaveCombatView(value)}
         onConfirmSaveCombat={onConfirmSaveCombat}
       />
       
       <AddFighterView
-        combatObject={combatObject}
+        combatObject={state.combatObject}
         onAddFighterSubmit={handleAddFighterSubmit}
         newFighterId={newFighterId}
         addFighterModalVisible={addFighterModalVisible}
