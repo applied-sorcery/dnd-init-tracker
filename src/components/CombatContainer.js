@@ -157,6 +157,7 @@ const CombatContainer = ({ navigation }) => {
         <CtrlBtn onPress={onClearPress}>Clear</CtrlBtn>
       </View>
       <View style={{ flex: 1 }}>
+          <AppText style={{alignSelf: "center"}}>{state.combatObject.name}</AppText>
           <AppText style={{alignSelf: "center"}}>Round: {state.combatObject.round}</AppText>
           <FighterList
             combatObject={state.combatObject}

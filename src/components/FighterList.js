@@ -82,7 +82,7 @@ const FighterList = ({ onAddFighterPress }) => {
         )}
       </TouchableOpacity>
     );
-  };
+  }; //FighterListItem
 
   return (
     <>
