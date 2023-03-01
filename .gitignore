@@ -21,3 +21,6 @@ ios/
 # Android
 android/app/build/
 android/.gradle/
+
+# other
+notes.txt
