@@ -23,6 +23,7 @@ const AddFighterView = ({
     id: 0,
     name: "NA",
     initScore: "0",
+    status: "n/a",
   }
 
   const [newFighter, setNewFighter] = useState(emptyFighter);

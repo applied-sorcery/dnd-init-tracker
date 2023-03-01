@@ -90,7 +90,7 @@ const CombatContainer = ({ navigation }) => {
           id: state.savedCombats.length + 1,
         },
       ], 
-      combatObject: {...state.combatObject},
+      combatObject: {...state.combatObject, name: combatName},
     });
     setShowSaveCombatView(false);
   };
