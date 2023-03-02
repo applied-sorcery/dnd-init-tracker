@@ -36,12 +36,53 @@ const Styles = StyleSheet.create({
   fighterListItem: {
     flexDirection:'row',
     marginLeft: 10,
+    borderColor: "yellow", 
+    borderWidth: 0
   },
 
   highlightFighter: {
     backgroundColor: colors.highlight,
   },
 
+  editStatusBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  statusIcon: {
+    marginLeft: 50,
+  },
+
+  pressedStatusIcon: {
+    marginLeft: 50,
+    opacity: .4,
+  },
+
+  statusRow: {
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
+  },
+
+  statusSearch: {
+      flex: 1/2,
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "row",
+      borderColor: colors.highlight,
+      borderWidth: 1,
+  },
+
+  searchInput: {
+    width: "75%",
+    alignSelf: "center",
+    justifyContent: "center",
+    borderColor: colors.highlight,
+    borderWidth: 1,
+  }
+
 });
+
+
 
 export default Styles;
