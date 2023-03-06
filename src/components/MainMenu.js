@@ -39,6 +39,7 @@ const MainMenu = ({
           New Combat
         </CtrlBtn>
         <CtrlBtn style={Styles.mainMenuButton} onPress={() => { navigation.navigate("Load Combat")}}>Load Combat</CtrlBtn>
+        <CtrlBtn style={Styles.mainMenuButton} onPress={() => { navigation.navigate("Manage Fighters")}}>Manage Fighters</CtrlBtn>
         <AppText>{"Recent  Combats: \n\n"}</AppText>
         <AppButton onPress={()=>navigation.navigate("Combat Container")} style={Styles.defaultText}>{state?.combatObject.name}</AppButton>
     </View>

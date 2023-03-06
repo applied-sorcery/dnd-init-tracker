@@ -12,6 +12,7 @@ import store from "./src/redux/store";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import LoadCombatView from "./src/components/LoadCombatView.js";
+import ManageFighters from "./src/components/ManageFightes.js"
 import { lightColors, darkColors } from './Styles.js'
 import Styles from './Styles.js'
 import { ThisIsAContext } from "./src/components/ThisIsAContext.js";
@@ -93,7 +94,9 @@ const App = () => {
               whoseTurn: 0,
               fighters: [],
               round: 0,
-            }
+            },
+            savedFighters: [],
+            savedGroups: [],
           })
           } else {
             console.log("loading data")
@@ -116,6 +119,7 @@ const App = () => {
           >
             <Stack.Screen name="Main Menu" component={MainMenu} />
             <Stack.Screen name="Load Combat" component={LoadCombatView} />
+            <Stack.Screen name="Manage Fighters" component={ManageFighters} />
             <Stack.Screen name="Combat Container" component={CombatContainer} />
           </Stack.Navigator>
         </NavigationContainer>
